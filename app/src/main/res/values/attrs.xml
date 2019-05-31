@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TestAttrs">
+        <!--这条属性将在父控件中使用-->
+        <attr name="testAAA" format="string"/>
+        <!--这条属性将在子控件中使用-->
+        <attr name="testBBBB" format="string"/>
+    </declare-styleable>
+</resources>
