@@ -18,6 +18,7 @@
         </activity>
 
         <activity android:name=".TestActivity"/>
+        <activity android:name=".testNested.NestedActivity"/>
     </application>
 
 </manifest>
