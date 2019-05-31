@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Abc">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#788721</item>
+    </style>
+    <style name="Cde">
+        <item name="Bcd">@style/Abc</item>
+    </style>
 </resources>
