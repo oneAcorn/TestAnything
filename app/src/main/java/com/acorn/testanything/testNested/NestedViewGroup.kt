@@ -20,6 +20,16 @@ class NestedViewGroup @JvmOverloads constructor(
     }
 
     override fun onStartNestedScroll(child: View?, target: View?, nestedScrollAxes: Int): Boolean {
-        return nestedScrollAxes==ViewCompat.SCROLL_AXIS_VERTICAL
+        return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL
+    }
+
+    override fun onNestedPreScroll(target: View?, dx: Int, dy: Int, consumed: IntArray?) {
+        val hiddenTop = dy > 0 && scrollY < 400
+        val showTop = dy < 0 && scrollY > 0 && !ViewCompat.canScrollVertically(target, -1)
+
+        if (hiddenTop || showTop) {
+            scrollBy(0, dy)
+            consumed?.let { it[1] = dy }
+        }
     }
 }
