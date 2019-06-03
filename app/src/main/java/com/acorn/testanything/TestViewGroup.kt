@@ -14,7 +14,7 @@ import com.acorn.testanything.utils.log
  */
 class TestViewGroup @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyle: Int = 0) :
     ViewGroup(context, attributeSet, defStyle) {
-    private val testview = TestView(context, null, R.style.Cde, attributeSet).apply {
+    private val testview = TestView(context, null, R.attr.TestDefAttrs, attributeSet).apply {
 //        layoutParams = RelativeLayout.LayoutParams(100, 100)
 //        setBackgroundColor(Color.parseColor("#ff00ffff"))
     }

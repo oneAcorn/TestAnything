@@ -6,5 +6,6 @@
         <!--这条属性将在子控件中使用-->
         <attr name="testBBBB" format="string"/>
     </declare-styleable>
-    <attr name="Bcd" format="reference"></attr>
+    <!--这条属性用于设置默认属性-->
+    <attr name="TestDefAttrs" format="reference"/>
 </resources>
