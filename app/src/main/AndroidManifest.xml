@@ -20,6 +20,9 @@
         <activity android:name=".TestActivity"/>
         <activity android:name=".testNested.NestedActivity"/>
         <activity android:name=".testAnimator.TestAnimatorActivity"/>
+        <activity android:name=".testNested.NestedActivity2"/>
+        <activity android:name=".testNested.NestedActivity3"/>
+        <activity android:name=".testNested.NestedActivity4"/>
     </application>
 
 </manifest>
