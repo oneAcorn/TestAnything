@@ -20,6 +20,7 @@ class MyBehavior constructor(context: Context, attributeSet: AttributeSet) :
     override fun onDependentViewChanged(parent: CoordinatorLayout, child: View, dependency: View): Boolean {
         dependency as RecyclerView
         Log.i("MyBehavior", "scrollY:${dependency.scrollY},y:${dependency.y}")
+        child.y = dependency.y
         return true
     }
 }
