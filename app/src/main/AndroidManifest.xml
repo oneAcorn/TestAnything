@@ -23,6 +23,7 @@
         <activity android:name=".testNested.NestedActivity2"/>
         <activity android:name=".testNested.NestedActivity3"/>
         <activity android:name=".testNested.NestedActivity4"/>
+        <activity android:name=".RegEx.RegExActivity"/>
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package com.acorn.testanything.RegEx
 
+import java.lang.Exception
+import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 /**
@@ -8,12 +10,14 @@ import java.util.regex.Pattern
 
 fun main() {
     val test = Test()
-    println("aaa:${test.myData?.str},bbb:${test.myData?.arr2?.let { it[0] }}")
-    println(test.testMatcher("dfalsjglasj"))
-    println(test.testMatcher("asbfc2312d"))
-    println(test.testMatcher("12!sf_@dsfdfj"))
-    println(test.testMatcher("1251235342"))
-    println(test.testMatcher("!#@$@$!@$!@"))
+//    println("aaa:${test.myData?.str},bbb:${test.myData?.arr2?.let { it[0] }}")
+//    println(test.matchPassword("dfalsjglasj"))
+//    println(test.matchPassword("asbfc2312d"))
+//    println(test.matchPassword("12!sf_@dsfdfj"))
+//    println(test.matchPassword("1251235342"))
+//    println(test.matchPassword("!#@$@$!@$!@"))
+    println(test.testMatch("regex not"))
+    println(test.testMatch("regex"))
 }
 
 class Test {
@@ -25,7 +29,18 @@ class Test {
         var arr2: List<String>? = null
     }
 
-    fun testMatcher(input: String): Boolean {
+    /**
+     * 6-12位数字,字母组合(两者必须都有),可以包含特殊字符
+     */
+    fun matchPassword(input: String): Boolean {
         return Pattern.compile("""(?=.*[a-zA-Z])(?=.*\d)[^\\]{6,12}""").matcher(input).find()
+    }
+
+    fun testMatch(input: String): String {
+        val matcher: Matcher = Pattern.compile("regex|regex not").matcher(input)
+        if (matcher.find()) {
+            return matcher.group()
+        }
+        return "null"
     }
 }
