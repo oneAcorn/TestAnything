@@ -1,6 +1,8 @@
 package com.acorn.testanything.RegEx
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
@@ -19,9 +21,35 @@ class RegExActivity : AppCompatActivity() {
         setContentView(R.layout.activity_regex)
 
         regexBtn1.setOnClickListener {
-            matchEt.setText("""(?=.*[a-zA-Z])(?=.*\d)[^\\]{6,12}""")
+            //正则引擎默认使用贪婪模式".+"直接匹配到换行符(因为.不匹配换行符)
+            matchEt.setText("""<.+>""")
+            testStrEt.setText("I am a title tag<H2>title</H2>,and you?")
         }
 
+        regexBtn2.setOnClickListener {
+            //"?"使正则引擎使用惰性模式,当匹配到第一个">"就停止匹配了
+            //"+",“*”，“{}”和“?”表示的重复也可以用这个方案
+            matchEt.setText("""<.+?>""")
+            testStrEt.setText("I am a title tag<H2>title</H2>,and you?")
+        }
+
+        regexBtn3.setOnClickListener {
+            //惰性扩展的一个替代方案
+            //我们还有一个更好的替代方案。可以用一个贪婪重复与一个取反字符集：“<[^>]+>”。
+            //之所以说这是一个更好的方案在于使用惰性重复时，
+            //引擎会在找到一个成功匹配前对每一个字符进行回溯。而使用取反字符集则不需要进行回溯。
+            matchEt.setText("""<[^>]+>""")
+            testStrEt.setText("I am a title tag<H2>title</H2>,and you?")
+        }
+
+        regexBtn4.setOnClickListener {
+            matchEt.setText("""((\d+(\,|，)\d+)*|(\d+))""")
+            testStrEt.setText("123，456,789")
+        }
+
+        regexPwdBtn.setOnClickListener {
+            matchEt.setText("""(?=.*[a-zA-Z])(?=.*\d)[^\\]{6,12}""")
+        }
 
 
         clearMatchTv.setOnClickListener {
@@ -48,14 +76,31 @@ class RegExActivity : AppCompatActivity() {
     private fun doRegEx() {
         val matcher: Matcher = Pattern.compile(matchEt.text.toString()).matcher(testStrEt.text.toString())
         if (matcher.find()) {
-//                val sb=StringBuilder()
-//                for(i in 0 until matcher.groupCount()){
-//                    sb.append(matcher.group(i))
-//                    sb.append("\n")
-//                }
-            matchTv.text = matcher.group()
+            val sb = StringBuilder()
+            val res = if (matcher.groupCount() > 0) {
+                sb.append("共找到${matcher.groupCount()}处匹配\n")
+                for (i in 0 until matcher.groupCount()) {
+                    sb.append(matcher.group(i))
+                    sb.append("\n")
+                }
+                sb.toString()
+            } else {
+                sb.append("共找到1处匹配\n")
+                sb.append(matcher.group())
+                sb.toString()
+            }
+            matchTv.text = res
         } else {
             matchTv.text = "没有找到匹配"
         }
+        val anim4 = ObjectAnimator.ofInt(
+            matchTv,
+            "TextColor",
+            Color.argb(255, 30, 30, 30),
+            Color.argb(255, 0, 244, 190),
+            Color.argb(255, 30, 30, 30)
+        )
+//        anim4.repeatCount=2
+        anim4.start()
     }
 }

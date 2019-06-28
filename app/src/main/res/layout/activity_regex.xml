@@ -78,18 +78,33 @@
                 android:layout_width="wrap_content"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
-
             <Button
                     android:id="@+id/regexBtn1"
+                    android:text="HTML标签(贪婪)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <Button
+                    android:id="@+id/regexBtn2"
+                    android:text="HTML标签(懒惰)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <Button
+                    android:id="@+id/regexBtn3"
+                    android:text="HTML标签(取反)"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <Button
+                    android:id="@+id/regexBtn4"
+                    android:text="group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <Button
+                    android:id="@+id/regexPwdBtn"
                     android:text="6-12位字母或数字密码,可以有特殊字符"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
-            <Button
-                    android:id="@+id/regexBtn2"
-                    android:text="邮箱"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
         </LinearLayout>
     </HorizontalScrollView>
 
