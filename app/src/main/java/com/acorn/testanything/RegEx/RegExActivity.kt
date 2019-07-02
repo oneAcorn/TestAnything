@@ -47,8 +47,22 @@ class RegExActivity : AppCompatActivity() {
             testStrEt.setText("123，456,789")
         }
 
+        regexBtn5.setOnClickListener {
+            matchEt.setText("""a*b""")
+            var sb = java.lang.StringBuilder()
+            for (i: Int in 0..1000) {
+                sb.append("a")
+            }
+            testStrEt.setText(sb.toString())
+        }
+
+        regexBtn6.setOnClickListener {
+            matchEt.setText("""(?=.*[a-zA-Z])(?=.*\d)(?!.*[\u4e00-\u9fa5])[^\\]{6,12}""")
+        }
+
         regexPwdBtn.setOnClickListener {
-            matchEt.setText("""(?=.*[a-zA-Z])(?=.*\d)[^\\]{6,12}""")
+            //6-12位字母数字混合,可以包含除"\"外特殊字符,不可以包含中文
+            matchEt.setText("""(?=.*[a-zA-Z])(?=.*\d)(?!.*[\u4e00-\u9fa5])[^\\]{6,12}""")
         }
 
 
@@ -74,24 +88,27 @@ class RegExActivity : AppCompatActivity() {
     }
 
     private fun doRegEx() {
+        val startTime = System.currentTimeMillis()
         val matcher: Matcher = Pattern.compile(matchEt.text.toString()).matcher(testStrEt.text.toString())
+        val matcher2: Matcher = Pattern.compile(matchEt.text.toString()).matcher(testStrEt.text.toString())
+        matchTitleTv.text="匹配(matches:${matcher2.matches()}):"
         if (matcher.find()) {
             val sb = StringBuilder()
             val res = if (matcher.groupCount() > 0) {
-                sb.append("共找到${matcher.groupCount()}处匹配\n")
+                sb.append("共找到${matcher.groupCount()}处匹配,耗时${System.currentTimeMillis() - startTime}ms\n")
                 for (i in 0 until matcher.groupCount()) {
                     sb.append(matcher.group(i))
                     sb.append("\n")
                 }
                 sb.toString()
             } else {
-                sb.append("共找到1处匹配\n")
+                sb.append("共找到1处匹配,耗时${System.currentTimeMillis() - startTime}ms\n")
                 sb.append(matcher.group())
                 sb.toString()
             }
             matchTv.text = res
         } else {
-            matchTv.text = "没有找到匹配"
+            matchTv.text = "没有找到匹配,耗时${System.currentTimeMillis() - startTime}ms"
         }
         val anim4 = ObjectAnimator.ofInt(
             matchTv,
