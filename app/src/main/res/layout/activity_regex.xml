@@ -116,7 +116,13 @@
 
                 <Button
                         android:id="@+id/regexBtn6"
-                        android:text="ssssss"
+                        android:text="邮箱"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                        android:id="@+id/regexPwdBtn2"
+                        android:text="6-12位字母数字混合"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 

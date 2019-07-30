@@ -1,7 +1,6 @@
 package com.acorn.testanything.RegEx
 
 import android.animation.ObjectAnimator
-import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -57,6 +56,11 @@ class RegExActivity : AppCompatActivity() {
         }
 
         regexBtn6.setOnClickListener {
+            matchEt.setText("""[0-9a-zA-Z]+@[0-9a-zA-Z]+\.[0-9a-zA-Z]+""")
+            testStrEt.setText("abcd@126.com")
+        }
+
+        regexPwdBtn2.setOnClickListener {
             //6-12位数字字母混合
             //?!表示否定式的向前查看
             //(?![a-zA-Z]+$)表示不能纯字母
