@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.acorn.testanything.RegEx.RegExActivity
+import com.acorn.testanything.anything.AnythingActivity
 import com.acorn.testanything.testAnimator.TestAnimatorActivity
 import com.acorn.testanything.testNested.NestedActivity2
 import com.acorn.testanything.testNested.NestedActivity3
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         }
         regexBtn.setOnClickListener {
             startActivity(Intent(this,RegExActivity::class.java))
+        }
+        anyThingBtn.setOnClickListener {
+            startActivity(Intent(this,AnythingActivity::class.java))
         }
     }
 }

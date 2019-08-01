@@ -24,6 +24,7 @@
         <activity android:name=".testNested.NestedActivity3"/>
         <activity android:name=".testNested.NestedActivity4"/>
         <activity android:name=".RegEx.RegExActivity"/>
+        <activity android:name=".anything.AnythingActivity"/>
     </application>
 
 </manifest>
