@@ -40,9 +40,15 @@ class RxJavaActivity : AppCompatActivity() {
                 it.onNext("hello")
                 it.onComplete()
             }
+                .doOnSubscribe {
+                    rLog("doOnSubscribe1")
+                }
                 .map {
                     rLog("map1")
                     it
+                }
+                .doOnNext {
+                    rLog("doOnNext")
                 }
                 .observeOn(Schedulers.newThread())
                 .map {
@@ -63,7 +69,7 @@ class RxJavaActivity : AppCompatActivity() {
                     it
                 }
                 .doOnSubscribe {
-                    rLog("doOnSubscribe")
+                    rLog("doOnSubscribe2")
                 }
                 .subscribeOn(Schedulers.computation())
                 .subscribe {
