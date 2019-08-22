@@ -23,7 +23,7 @@ class AnythingActivity : AppCompatActivity() {
         }
 
         appInfoBtn.setOnClickListener {
-            infoTv.text = "手机型号:${android.os.Build.MODEL},品牌:${android.os.Build.BRAND}"
+            infoTv.text = "手机型号:${android.os.Build.MODEL},品牌:${android.os.Build.BRAND},制造商:${android.os.Build.MANUFACTURER}"
         }
     }
 }
