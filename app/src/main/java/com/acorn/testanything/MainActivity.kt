@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.acorn.testanything.RegEx.RegExActivity
 import com.acorn.testanything.anything.AnythingActivity
+import com.acorn.testanything.motionLayout.MotionLayoutActivity
 import com.acorn.testanything.rxjava.RxJavaActivity
 import com.acorn.testanything.testAnimator.TestAnimatorActivity
 import com.acorn.testanything.testNested.NestedActivity2
@@ -40,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         }
         rxjavaBtn.setOnClickListener {
             startActivity(Intent(this, RxJavaActivity::class.java))
+        }
+        motionBtn.setOnClickListener {
+            startActivity(Intent(this, MotionLayoutActivity::class.java))
         }
     }
 }
