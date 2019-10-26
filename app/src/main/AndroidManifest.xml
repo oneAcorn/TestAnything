@@ -27,6 +27,9 @@
         <activity android:name=".anything.AnythingActivity"/>
         <activity android:name=".rxjava.RxJavaActivity"/>
         <activity android:name=".motionLayout.MotionLayoutActivity"/>
+        <activity android:name=".constraintLayout.ConstraintRatioActivity"/>
+        <activity android:name=".constraintLayout.ConstraintChainsActivity"/>
+        <activity android:name=".constraintLayout.ConstraintPlaceHolderActivity"/>
     </application>
 
 </manifest>

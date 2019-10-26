@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       xmlns:tools="http://schemas.android.com/tools"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:parentTag="android.support.constraint.ConstraintLayout"
+        >
+
+    <android.support.constraint.Placeholder
+            android:id="@+id/holder1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/holder2"
+            android:layout_marginTop="20dp"
+            app:content="@+id/content1"
+            />
+
+    <android.support.constraint.Placeholder
+            android:id="@+id/holder2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/holder1"
+            app:content="@+id/content2"
+            />
+</merge>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/tv1"
+            android:layout_width="40dp"
+            android:layout_height="0dp"
+            android:background="#BEF763"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintDimensionRatio="W,4:1"
+            android:text=""
+            />
+
+    <TextView
+            android:id="@+id/tv2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tv1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="#30F1C5"
+            app:layout_constraintDimensionRatio="4:1"
+            android:text="W,4:1这种写法逻辑相当混乱,所以就直接4:1表示宽比高等于4比1"
+            />
+    <TextView
+            android:id="@+id/tv3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tv2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="#DD1B54"
+            app:layout_constraintDimensionRatio="1:2"
+            />
+</android.support.constraint.ConstraintLayout>

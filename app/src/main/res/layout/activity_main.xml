@@ -64,15 +64,47 @@
                 android:text="Anything"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
         <Button
                 android:id="@+id/rxjavaBtn"
                 android:text="RxJava"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
         <Button
                 android:id="@+id/motionBtn"
                 android:text="MotionLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/constraintBtn"
+                        android:text="Constraint Ratio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/constraintChainsBtn"
+                    android:text="Constraint Chains"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                        android:id="@+id/constraintPlaceHolderBtn"
+                        android:text="Constraint PlaceHolder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
     </LinearLayout>
 </ScrollView>

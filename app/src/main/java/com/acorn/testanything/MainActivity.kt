@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.acorn.testanything.RegEx.RegExActivity
 import com.acorn.testanything.anything.AnythingActivity
+import com.acorn.testanything.constraintLayout.ConstraintChainsActivity
+import com.acorn.testanything.constraintLayout.ConstraintPlaceHolderActivity
+import com.acorn.testanything.constraintLayout.ConstraintRatioActivity
 import com.acorn.testanything.motionLayout.MotionLayoutActivity
 import com.acorn.testanything.rxjava.RxJavaActivity
 import com.acorn.testanything.testAnimator.TestAnimatorActivity
@@ -44,6 +47,15 @@ class MainActivity : AppCompatActivity() {
         }
         motionBtn.setOnClickListener {
             startActivity(Intent(this, MotionLayoutActivity::class.java))
+        }
+        constraintBtn.setOnClickListener {
+            startActivity(Intent(this, ConstraintRatioActivity::class.java))
+        }
+        constraintChainsBtn.setOnClickListener {
+            startActivity(Intent(this, ConstraintChainsActivity::class.java))
+        }
+        constraintPlaceHolderBtn.setOnClickListener {
+            startActivity(Intent(this, ConstraintPlaceHolderActivity::class.java))
         }
     }
 }
