@@ -1,5 +1,6 @@
 package com.acorn.testanything.algorithm
 
+import kotlin.math.log
 import kotlin.math.pow
 
 /**
@@ -7,7 +8,7 @@ import kotlin.math.pow
  */
 
 fun main() {
-    question7()
+    question8()
 }
 
 /**
@@ -121,4 +122,31 @@ private fun question7() {
         totalDistance += height
     }
     println("height:$height,totalDistance:$totalDistance")
+}
+
+/**
+ * 50个人围成一圈数到三和三的倍数时出圈，问剩下的人是谁？在原来的位置是多少？
+ */
+private fun question8() {
+    val total = 10
+    val step = 3
+    var curNum = 1
+    val list = mutableListOf<Int>()
+    for (i in 1..total) {
+        list.add(i)
+    }
+    var iterator = list.iterator()
+    while (list.size > 1) {
+        if (!iterator.hasNext()) {
+            iterator = list.iterator()
+            println("list:$list")
+        }
+        val num = iterator.next()
+        if (curNum % step == 0) {
+            iterator.remove()
+        }
+        println("num:$num,curNum:$curNum")
+        curNum++
+    }
+    println("res:${list[0]}")
 }
