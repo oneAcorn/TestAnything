@@ -1,7 +1,7 @@
 package com.acorn.testanything
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 
 /**
  * Created by acorn on 2019-05-30.

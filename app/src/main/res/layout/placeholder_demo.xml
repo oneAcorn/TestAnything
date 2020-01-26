@@ -4,10 +4,10 @@
        xmlns:tools="http://schemas.android.com/tools"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       tools:parentTag="android.support.constraint.ConstraintLayout"
+       tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
         >
 
-    <android.support.constraint.Placeholder
+    <androidx.constraintlayout.widget.Placeholder
             android:id="@+id/holder1"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -18,7 +18,7 @@
             app:content="@+id/content1"
             />
 
-    <android.support.constraint.Placeholder
+    <androidx.constraintlayout.widget.Placeholder
             android:id="@+id/holder2"
             android:layout_width="60dp"
             android:layout_height="60dp"

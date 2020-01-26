@@ -1,12 +1,8 @@
 package com.acorn.testanything
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import android.util.Log
-import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import com.acorn.testanything.utils.log
 
 /**

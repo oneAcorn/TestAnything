@@ -1,11 +1,13 @@
 package com.acorn.testanything.testNested;
 
 import android.content.Context;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 /**
  * 有用的,在xml调用 dont delete!!!!!

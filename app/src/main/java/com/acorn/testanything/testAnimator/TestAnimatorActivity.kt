@@ -3,7 +3,7 @@ package com.acorn.testanything.testAnimator
 import android.animation.*
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
 import kotlinx.android.synthetic.main.activity_test_animator.*
 

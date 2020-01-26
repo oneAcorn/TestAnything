@@ -2,12 +2,13 @@ package com.acorn.testanything
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.RegEx.RegExActivity
 import com.acorn.testanything.anything.AnythingActivity
 import com.acorn.testanything.constraintLayout.ConstraintChainsActivity
 import com.acorn.testanything.constraintLayout.ConstraintPlaceHolderActivity
 import com.acorn.testanything.constraintLayout.ConstraintRatioActivity
+import com.acorn.testanything.memory.TestMemoryLeakActivity
 import com.acorn.testanything.motionLayout.MotionLayoutActivity
 import com.acorn.testanything.rxjava.RxJavaActivity
 import com.acorn.testanything.testAnimator.TestAnimatorActivity
@@ -56,6 +57,10 @@ class MainActivity : AppCompatActivity() {
         }
         constraintPlaceHolderBtn.setOnClickListener {
             startActivity(Intent(this, ConstraintPlaceHolderActivity::class.java))
+        }
+
+        memoryLeakBtn.setOnClickListener {
+            startActivity(Intent(this, TestMemoryLeakActivity::class.java))
         }
     }
 }

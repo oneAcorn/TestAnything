@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.acorn.testanything.testNested.NestedViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -16,26 +16,24 @@
                 android:layout_centerInParent="true"
                 android:gravity="center_vertical"
                 android:text="标题"
-                android:textSize="30sp"
                 android:textColor="#ffffff"
-                />
+                android:textSize="30sp" />
     </RelativeLayout>
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:textSize="16sp"
-            app:tabTextColor="#2BB61C"
-            app:tabIndicatorColor="#2BB61C"
-            app:tabMode="fixed"
             app:tabGravity="fill"
+            app:tabIndicatorColor="#2BB61C"
             app:tabIndicatorHeight="2dp"
+            app:tabMode="fixed"
             app:tabSelectedTextColor="#279E9E"
-            />
+            app:tabTextColor="#2BB61C" />
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 </com.acorn.testanything.testNested.NestedViewGroup>

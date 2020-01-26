@@ -3,9 +3,9 @@ package com.acorn.testanything.RegEx
 import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
 import kotlinx.android.synthetic.main.activity_regex.*
 import java.util.regex.Matcher
