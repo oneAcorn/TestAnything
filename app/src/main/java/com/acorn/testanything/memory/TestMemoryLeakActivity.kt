@@ -1,6 +1,7 @@
 package com.acorn.testanything.memory
 
 import android.os.Bundle
+import android.widget.ImageView
 import com.acorn.testanything.R
 import com.acorn.testanything.utils.log
 import com.trello.rxlifecycle3.android.ActivityEvent
@@ -22,6 +23,17 @@ class TestMemoryLeakActivity : RxAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_memory_leak)
 
+        val imageViews = arrayListOf<ImageView>()
+        for (i in 0..4000) {
+            val imageView = ImageView(this)
+            imageViews.add(imageView)
+        }
+
+        leakedMethod()
+        leakedMethod2()
+    }
+
+    private fun leakedMethod() {
         disposable = Observable.interval(0, 2, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -29,6 +41,17 @@ class TestMemoryLeakActivity : RxAppCompatActivity() {
             .subscribe {
                 log("间隔接受数据$it")
             }
+    }
+
+    private fun leakedMethod2() {
+        LeakedThread().start()
+    }
+
+    class LeakedThread : Thread() {
+        override fun run() {
+            super.run()
+            Thread.sleep(60 * 60 * 1000)
+        }
     }
 
     override fun onDestroy() {
