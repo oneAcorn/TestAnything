@@ -25,7 +25,7 @@ class TestMemoryLeakActivity : RxAppCompatActivity() {
         disposable = Observable.interval(0, 2, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .compose(this.bindUntilEvent(ActivityEvent.DESTROY))
+            .compose(this.bindUntilEvent(ActivityEvent.DESTROY)) //这种方式可以解决内存泄漏的问题
             .subscribe {
                 log("间隔接受数据$it")
             }
@@ -33,7 +33,8 @@ class TestMemoryLeakActivity : RxAppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        //我就不dispose(),测试内存泄漏用
+        //我就不dispose(),测试内存泄漏用.这里即使dispose也会内存泄漏
+        //除非使用RxLifeCycle才能解决
 //        disposable?.dispose()
     }
 }
