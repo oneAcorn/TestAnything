@@ -10,3 +10,7 @@ import android.util.Log
 fun log(string: String) {
     Log.i("pagumaLarvata", string)
 }
+
+fun print(string: String) {
+    println(string)
+}
