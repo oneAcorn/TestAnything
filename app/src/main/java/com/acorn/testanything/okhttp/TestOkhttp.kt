@@ -8,6 +8,18 @@ import java.io.IOException
 /**
  * Created by acorn on 2020/3/1.
  */
+
+fun main() {
+    TestOkhttp().test(object : IOutput {
+        override fun println(str: String) {
+            println(str)
+        }
+
+        override fun clearLog() {
+        }
+    })
+}
+
 class TestOkhttp : ITest {
     override fun test(output: IOutput) {
         with(output) {
