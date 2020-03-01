@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.acorn.testanything">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -31,6 +37,7 @@
         <activity android:name=".constraintLayout.ConstraintChainsActivity"/>
         <activity android:name=".constraintLayout.ConstraintPlaceHolderActivity"/>
         <activity android:name=".memory.TestMemoryLeakActivity"/>
+        <activity android:name=".testWithOutput.TestWithOutputActivity"/>
     </application>
 
 </manifest>

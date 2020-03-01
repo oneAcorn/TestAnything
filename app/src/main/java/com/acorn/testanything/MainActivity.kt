@@ -15,6 +15,7 @@ import com.acorn.testanything.testAnimator.TestAnimatorActivity
 import com.acorn.testanything.testNested.NestedActivity2
 import com.acorn.testanything.testNested.NestedActivity3
 import com.acorn.testanything.testNested.NestedActivity4
+import com.acorn.testanything.testWithOutput.TestWithOutputActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         btn.setOnClickListener {
             startActivity(Intent(this@MainActivity, TestActivity::class.java))
+        }
+        testWithOutput.setOnClickListener {
+            startActivity(Intent(this@MainActivity, TestWithOutputActivity::class.java))
         }
         nestedBtn.setOnClickListener {
             startActivity(Intent(this, NestedActivity2::class.java))
