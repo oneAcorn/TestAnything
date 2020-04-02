@@ -49,4 +49,5 @@ dependencies {
     implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.1.0'
     // If you want to use Kotlin syntax
     implementation 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.1.0'
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }
