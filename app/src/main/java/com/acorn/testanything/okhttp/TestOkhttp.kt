@@ -11,7 +11,7 @@ import java.io.IOException
 
 fun main() {
     TestOkhttp().test(object : IOutput {
-        override fun println(str: String) {
+        override fun output(str: String) {
             println(str)
         }
 
@@ -28,11 +28,11 @@ class TestOkhttp : ITest {
                     var request = chain.request()
                     val builder = request.newBuilder()
                     request = builder.addHeader("anyHeader", "haha").build()
-                    println("Interceptor1 addHeader ${request.header("anyHeader")}")
+                    output("Interceptor1 addHeader ${request.header("anyHeader")}")
                     chain.proceed(request)
                 }
                 .addInterceptor { chain ->
-                    println("Interceptor2")
+                    output("Interceptor2")
                     chain.proceed(chain.request())
                 }
                 .build()
@@ -44,11 +44,11 @@ class TestOkhttp : ITest {
             val call: Call = client.newCall(request)
             call.enqueue(object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    println("onFailure:${e.message}")
+                    output("onFailure:${e.message}")
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    println("onResponse:${response.networkResponse().toString()}")
+                    output("onResponse:${response.networkResponse().toString()}")
                 }
             })
         }

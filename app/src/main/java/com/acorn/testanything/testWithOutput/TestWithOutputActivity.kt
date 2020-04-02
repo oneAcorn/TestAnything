@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
+import com.acorn.testanything.okhttp.TestFakeOkHttp
 import com.acorn.testanything.okhttp.TestOkhttp
 import kotlinx.android.synthetic.main.activity_output.*
 
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_output.*
  * Created by acorn on 2020/3/1.
  */
 class TestWithOutputActivity : AppCompatActivity(), IOutput {
-    private val testItems: Array<ITest> = arrayOf(TestOkhttp())
+    private val testItems: Array<ITest> = arrayOf(TestOkhttp(),TestFakeOkHttp())
     private lateinit var curTest: ITest
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +49,7 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
         }
     }
 
-    override fun println(str: String) {
+    override fun output(str: String) {
         tv.text = "${tv.text}\n$str"
     }
 
