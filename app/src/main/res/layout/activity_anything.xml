@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-<LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-    <TextView
-            android:id="@+id/infoTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <Button
-            android:id="@+id/openAppBtn"
-            android:text="打开其他app"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <Button
-            android:id="@+id/appInfoBtn"
-            android:text="查看应用信息"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/infoTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <Button
+                android:id="@+id/openAppBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="打开其他app" />
+
+        <Button
+                android:id="@+id/appInfoBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看应用信息" />
+
+        <Button
+                android:id="@+id/alertDialogBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AlertDialog"
+                android:textAllCaps="false" />
+    </LinearLayout>
 </ScrollView>

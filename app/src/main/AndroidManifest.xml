@@ -30,7 +30,8 @@
         <activity android:name=".testNested.NestedActivity3"/>
         <activity android:name=".testNested.NestedActivity4"/>
         <activity android:name=".RegEx.RegExActivity"/>
-        <activity android:name=".anything.AnythingActivity"/>
+        <activity android:name=".anything.AnythingActivity"
+                android:configChanges="orientation"/>
         <activity android:name=".rxjava.RxJavaActivity"/>
         <activity android:name=".motionLayout.MotionLayoutActivity"/>
         <activity android:name=".constraintLayout.ConstraintRatioActivity"/>
