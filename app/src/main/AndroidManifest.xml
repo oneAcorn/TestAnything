@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.acorn.testanything">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
             android:allowBackup="true"
@@ -31,7 +31,7 @@
         <activity android:name=".testNested.NestedActivity4"/>
         <activity android:name=".RegEx.RegExActivity"/>
         <activity android:name=".anything.AnythingActivity"
-                android:configChanges="orientation"/>
+                  android:configChanges="orientation"/>
         <activity android:name=".rxjava.RxJavaActivity"/>
         <activity android:name=".motionLayout.MotionLayoutActivity"/>
         <activity android:name=".constraintLayout.ConstraintRatioActivity"/>
@@ -39,6 +39,20 @@
         <activity android:name=".constraintLayout.ConstraintPlaceHolderActivity"/>
         <activity android:name=".memory.TestMemoryLeakActivity"/>
         <activity android:name=".testWithOutput.TestWithOutputActivity"/>
+        <activity android:name=".broadcast.RegisterBroadcastActivity"/>
+
+        <!--Android 8.0的应用无法继续在其AndroidManifest中为隐式广播注册广播接收器-->
+        <receiver android:name=".broadcast.MyBroadcastReceiver">
+            <intent-filter>
+                <!--屏幕开启广播(隐式广播)-->
+                <action android:name="android.intent.action.SCREEN_ON"/>
+                <!--usb插入拔出(隐式广播)-->
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <!--自定义广播(显式广播)-->
+                <action android:name="com.acorn.testanything.MY_BROADCAST"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

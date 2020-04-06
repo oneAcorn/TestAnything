@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.RegEx.RegExActivity
 import com.acorn.testanything.anything.AnythingActivity
+import com.acorn.testanything.broadcast.RegisterBroadcastActivity
 import com.acorn.testanything.constraintLayout.ConstraintChainsActivity
 import com.acorn.testanything.constraintLayout.ConstraintPlaceHolderActivity
 import com.acorn.testanything.constraintLayout.ConstraintRatioActivity
@@ -62,9 +63,11 @@ class MainActivity : AppCompatActivity() {
         constraintPlaceHolderBtn.setOnClickListener {
             startActivity(Intent(this, ConstraintPlaceHolderActivity::class.java))
         }
-
         memoryLeakBtn.setOnClickListener {
             startActivity(Intent(this, TestMemoryLeakActivity::class.java))
+        }
+        broadcastBtn.setOnClickListener {
+            startActivity(Intent(this, RegisterBroadcastActivity::class.java))
         }
     }
 }

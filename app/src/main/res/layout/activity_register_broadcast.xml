@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="动态注册广播"/>
+
+    <Button android:id="@+id/sendCustomBroadcastBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送自定义广播"/>
+
+    <Button android:id="@+id/registerCustomBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="动态注册自定义广播"/>
+
+    <Button android:id="@+id/sendCustomDynamicBroadcastBtn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送动态注册的自定义广播"/>
+</LinearLayout>

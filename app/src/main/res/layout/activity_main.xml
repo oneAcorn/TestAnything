@@ -36,19 +36,22 @@
                         android:id="@+id/nestedBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NestedActivity2"/>
+                        android:text="NestedActivity2"
+                        android:textAllCaps="false"/>
 
                 <Button
                         android:id="@+id/nestedBtn2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NestedActivity3"/>
+                        android:text="NestedActivity3"
+                        android:textAllCaps="false"/>
 
                 <Button
                         android:id="@+id/nestedBtn3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="NestedActivity4"/>
+                        android:text="NestedActivity4"
+                        android:textAllCaps="false"/>
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -56,31 +59,36 @@
                 android:id="@+id/animatorBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AnimatorActivity"/>
+                android:text="AnimatorActivity"
+                android:textAllCaps="false"/>
 
         <Button
                 android:id="@+id/regexBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RegEx"/>
+                android:text="RegEx"
+                android:textAllCaps="false"/>
 
         <Button
                 android:id="@+id/anyThingBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Anything"/>
+                android:text="Anything"
+                android:textAllCaps="false"/>
 
         <Button
                 android:id="@+id/rxjavaBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RxJava"/>
+                android:text="RxJava"
+                android:textAllCaps="false"/>
 
         <Button
                 android:id="@+id/motionBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MotionLayout"/>
+                android:text="MotionLayout"
+                android:textAllCaps="false"/>
 
         <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -95,19 +103,22 @@
                         android:id="@+id/constraintBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Constraint Ratio"/>
+                        android:text="Constraint Ratio"
+                        android:textAllCaps="false"/>
 
                 <Button
                         android:id="@+id/constraintChainsBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Constraint Chains"/>
+                        android:text="Constraint Chains"
+                        android:textAllCaps="false"/>
 
                 <Button
                         android:id="@+id/constraintPlaceHolderBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Constraint PlaceHolder"/>
+                        android:text="Constraint PlaceHolder"
+                        android:textAllCaps="false"/>
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -115,6 +126,13 @@
                 android:id="@+id/memoryLeakBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MemoryLeak"/>
+                android:text="MemoryLeak"
+                android:textAllCaps="false"/>
+
+        <Button android:id="@+id/broadcastBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Broadcast"
+                android:textAllCaps="false"/>
     </LinearLayout>
 </ScrollView>
