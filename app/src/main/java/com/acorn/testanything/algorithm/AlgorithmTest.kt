@@ -7,7 +7,8 @@ import kotlin.math.pow
  */
 
 fun main() {
-    question8()
+//    println("结果${findStep(6)}")
+    question9()
 }
 
 /**
@@ -144,8 +145,39 @@ private fun question8() {
         if (curNum % step == 0) {
             iterator.remove()
         }
-//        println("num:$num,curNum:$curNum")
         curNum++
     }
     println("res:${list[0]}")
+}
+
+/**
+ * n阶台阶,有2种走法,一种是1步1个台阶,一种是1步2个台阶,那么到顶端共有多少种走法
+ */
+private fun findStep(n: Int): Int {
+    if (n == 0 || n == 1 || n == 2)
+        return n
+    return findStep(n - 1) + findStep(n - 2)
+}
+
+/**
+ * 输入一个整型数组，数组里有正数也有负数。数组中一个或连续的多个整数组成一个子数组。求所有子数组的和的最大值。
+ * 例如：输入的数组为{1，-2， 3， 10， -4， 7， 2， -5}，和最大的子数组为{3， 10， -4， 7， 2}，因此输出为该子数组的和18。
+ */
+private fun question9() {
+    val arr = arrayOf(1, -2, 3, 10, -4, 7, 2, -5)
+    var maxSum = 0
+    var start = 0
+    var end = 0
+    for (i in arr.indices) {
+        var sum = 0
+        for (j in i until arr.size) {
+            sum += arr[j]
+            if (sum > maxSum) {
+                maxSum = sum
+                start = i
+                end = j
+            }
+        }
+    }
+    println("max:$maxSum,start:$start,end:$end")
 }
