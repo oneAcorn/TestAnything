@@ -1,4 +1,4 @@
-package com.acorn.testanything.threadPool
+package com.acorn.testanything.thread
 
 import java.util.concurrent.*
 
