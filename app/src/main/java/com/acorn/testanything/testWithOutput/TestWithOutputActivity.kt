@@ -9,13 +9,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
 import com.acorn.testanything.okhttp.TestFakeOkHttp
 import com.acorn.testanything.okhttp.TestOkhttp
+import com.acorn.testanything.utils.log
 import kotlinx.android.synthetic.main.activity_output.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Created by acorn on 2020/3/1.
  */
 class TestWithOutputActivity : AppCompatActivity(), IOutput {
-    private val testItems: Array<ITest> = arrayOf(TestOkhttp(),TestFakeOkHttp())
+    private val testItems: Array<ITest> = arrayOf(TestOkhttp(), TestFakeOkHttp())
     private lateinit var curTest: ITest
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +35,17 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
         clearBtn.setOnClickListener {
             clearLog()
         }
+        EventBus.getDefault().register(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(s: String) {
+        log("收到消息:$s")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun initSpinner() {
@@ -43,7 +58,12 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 curTest = testItems[position]
             }
         }

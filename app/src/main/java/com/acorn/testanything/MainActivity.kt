@@ -17,7 +17,11 @@ import com.acorn.testanything.testNested.NestedActivity2
 import com.acorn.testanything.testNested.NestedActivity3
 import com.acorn.testanything.testNested.NestedActivity4
 import com.acorn.testanything.testWithOutput.TestWithOutputActivity
+import com.acorn.testanything.utils.log
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
 
@@ -69,5 +73,16 @@ class MainActivity : AppCompatActivity() {
         broadcastBtn.setOnClickListener {
             startActivity(Intent(this, RegisterBroadcastActivity::class.java))
         }
+        EventBus.getDefault().register(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(s: String) {
+        log("收到消息:$s")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 }
