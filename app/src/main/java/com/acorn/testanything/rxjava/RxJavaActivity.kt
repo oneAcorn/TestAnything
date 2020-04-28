@@ -3,12 +3,15 @@ package com.acorn.testanything.rxjava
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
+import com.acorn.testanything.retrofit.BaseObserver
+import com.acorn.testanything.retrofit.RetrofitUtil
 import com.acorn.testanything.utils.log
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_rxjava.*
+import retrofit2.create
 import java.util.concurrent.Executors
 
 /**
@@ -96,6 +99,15 @@ class RxJavaActivity : AppCompatActivity() {
                 .subscribe {
                     rLog("onNext")
                 }
+        }
+        btn4.setOnClickListener {
+            RetrofitUtil.instance.create(HttpService::class.java)
+                .testGetType()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : BaseObserver<TestResult>(null) {
+
+                })
         }
     }
 
