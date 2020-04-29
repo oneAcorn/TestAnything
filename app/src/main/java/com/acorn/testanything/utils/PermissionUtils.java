@@ -74,12 +74,9 @@ public class PermissionUtils {
         return objects;
     }
 
-    public static void requestPermissions(final Object object, final int requestCode, final boolean isShowCancle, final String... perms) {
+    public static void requestPermissions(final Object object, final int requestCode, final String... perms) {
         checkCallingObjectSuitability(object);
         List<String> permsList = getDenidPermissions(getActivity(object), perms);
-        if (permsList == null) {
-            return;
-        }
         // 直接申请权限
         executePermissionsRequest(object, permsList.toArray(new String[permsList.size()]), requestCode);
     }

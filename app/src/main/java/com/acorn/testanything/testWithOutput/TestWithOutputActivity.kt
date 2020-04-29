@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.ThreadMode
 class TestWithOutputActivity : AppCompatActivity(), IOutput {
     private val testItems: Array<ITest> = arrayOf(
         TestOkhttp(), TestFakeOkHttp(), TimerUtil(),
-        SmsHelper(this, Handler(), object : SmsHelper.OnSmsListener {
+        SmsHelper(this, object : SmsHelper.OnSmsListener {
             override fun onReceiveVerifyCode(code: String) {
                 Toast.makeText(
                     this@TestWithOutputActivity, "收到$code,当前线程:${Thread.currentThread()}",

@@ -13,13 +13,13 @@ import java.util.regex.Pattern
 /**
  * Created by acorn on 2020/4/29.
  */
-class SmsHelper(val mContext: Context, val handler: Handler, val onSmsListener: OnSmsListener) :
-    ContentObserver(handler), ITest {
+class SmsHelper(private val mContext: Context, private val onSmsListener: OnSmsListener) :
+    ContentObserver(Handler()), ITest {
 
     override fun test(output: IOutput) {
         if (!PermissionUtils.hasPermissions(mContext, Manifest.permission.READ_SMS)) {
             PermissionUtils.requestPermissions(
-                mContext, 0, true,
+                mContext, 0,
                 Manifest.permission.READ_SMS
             )
             return
