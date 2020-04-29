@@ -54,4 +54,7 @@ dependencies {
     // If you want to use Kotlin syntax
     implementation 'com.trello.rxlifecycle3:rxlifecycle-kotlin:3.1.0'
     implementation 'org.greenrobot:eventbus:3.1.1'
+
+    //协程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
 }
