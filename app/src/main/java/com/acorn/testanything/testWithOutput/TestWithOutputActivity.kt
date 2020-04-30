@@ -22,17 +22,10 @@ import org.greenrobot.eventbus.ThreadMode
  * Created by acorn on 2020/3/1.
  */
 class TestWithOutputActivity : AppCompatActivity(), IOutput {
+    //各种测试类
     private val testItems: Array<ITest> = arrayOf(
         TestOkhttp(), TestFakeOkHttp(), TimerUtil(),
-        SmsHelper(this, object : SmsHelper.OnSmsListener {
-            override fun onReceiveVerifyCode(code: String) {
-                Toast.makeText(
-                    this@TestWithOutputActivity, "收到$code,当前线程:${Thread.currentThread()}",
-                    Toast.LENGTH_LONG
-                ).show()
-                output("收到$code,当前线程:${Thread.currentThread()}")
-            }
-        })
+        SmsHelper.testInstance(this, this)
     )
     private lateinit var curTest: ITest
 

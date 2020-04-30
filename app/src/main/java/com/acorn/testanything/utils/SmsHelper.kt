@@ -6,6 +6,7 @@ import android.database.ContentObserver
 import android.net.Uri
 import android.os.Handler
 import android.util.Log
+import android.widget.Toast
 import com.acorn.testanything.testWithOutput.IOutput
 import com.acorn.testanything.testWithOutput.ITest
 import java.util.regex.Pattern
@@ -15,6 +16,19 @@ import java.util.regex.Pattern
  */
 class SmsHelper(private val mContext: Context, private val onSmsListener: OnSmsListener) :
     ContentObserver(Handler()), ITest {
+
+    companion object{
+        fun testInstance(context: Context, output: IOutput): SmsHelper =
+            SmsHelper(context, object : SmsHelper.OnSmsListener {
+                override fun onReceiveVerifyCode(code: String) {
+                    Toast.makeText(
+                        context, "收到$code,当前线程:${Thread.currentThread()}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    output.output("收到$code,当前线程:${Thread.currentThread()}")
+                }
+            })
+    }
 
     override fun test(output: IOutput) {
         if (!PermissionUtils.hasPermissions(mContext, Manifest.permission.READ_SMS)) {
