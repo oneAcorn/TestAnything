@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
 import kotlinx.android.synthetic.main.activity_test_animator.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by acorn on 2019-06-03.
@@ -24,6 +25,7 @@ class TestAnimatorActivity : AppCompatActivity() {
                 duration = 1000
                 start()
             }
+            EventBus.getDefault().post("abc")
         }
 
         testAnimatorBtn2.setOnClickListener {
@@ -32,6 +34,7 @@ class TestAnimatorActivity : AppCompatActivity() {
             } else {
                 objectAnimator2.start()
             }
+            EventBus.getDefault().postSticky("sticky")
         }
 
         testAnimatorBtn3.setOnClickListener {

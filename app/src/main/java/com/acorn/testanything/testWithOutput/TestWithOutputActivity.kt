@@ -1,6 +1,7 @@
 package com.acorn.testanything.testWithOutput
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -9,13 +10,23 @@ import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
 import com.acorn.testanything.okhttp.TestFakeOkHttp
 import com.acorn.testanything.okhttp.TestOkhttp
+import com.acorn.testanything.utils.SmsHelper
+import com.acorn.testanything.utils.TimerUtil
+import com.acorn.testanything.utils.log
 import kotlinx.android.synthetic.main.activity_output.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * Created by acorn on 2020/3/1.
  */
 class TestWithOutputActivity : AppCompatActivity(), IOutput {
-    private val testItems: Array<ITest> = arrayOf(TestOkhttp(),TestFakeOkHttp())
+    //各种测试类
+    private val testItems: Array<ITest> = arrayOf(
+        TestOkhttp(), TestFakeOkHttp(), TimerUtil(),
+        SmsHelper.testInstance(this, this)
+    )
     private lateinit var curTest: ITest
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +42,26 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
         clearBtn.setOnClickListener {
             clearLog()
         }
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        curTest.test(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(s: String) {
+        log("收到消息:$s")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun initSpinner() {
@@ -43,7 +74,12 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 curTest = testItems[position]
             }
         }
