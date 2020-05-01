@@ -36,6 +36,7 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
         initSpinner()
         curTest = testItems[spinner.selectedItemPosition]
 
+        //测试提交
         testBtn.setOnClickListener {
             curTest.test(this@TestWithOutputActivity)
         }
