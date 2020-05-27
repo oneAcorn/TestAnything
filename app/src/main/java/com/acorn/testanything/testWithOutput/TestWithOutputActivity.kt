@@ -10,13 +10,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
 import com.acorn.testanything.okhttp.TestFakeOkHttp
 import com.acorn.testanything.okhttp.TestOkhttp
+import com.acorn.testanything.rxjava.RxHeart
 import com.acorn.testanything.utils.SmsHelper
 import com.acorn.testanything.utils.TimerUtil
 import com.acorn.testanything.utils.log
+import com.acorn.testanything.utils.logI
 import kotlinx.android.synthetic.main.activity_output.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Created by acorn on 2020/3/1.
@@ -25,7 +29,8 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
     //各种测试类
     private val testItems: Array<ITest> = arrayOf(
         TestOkhttp(), TestFakeOkHttp(), TimerUtil(),
-        SmsHelper.testInstance(this, this)
+        SmsHelper.testInstance(this, this),
+        RxHeart()
     )
     private lateinit var curTest: ITest
 
@@ -87,7 +92,13 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
     }
 
     override fun output(str: String) {
-        tv.text = "${tv.text}\n$str"
+        val formatter = SimpleDateFormat("HH:mm:ss.SSS", Locale.CHINA)
+        tv.text = "${tv.text}\n${formatter.format(Date())}:$str"
+    }
+
+    override fun log(str: String) {
+        val formatter = SimpleDateFormat("HH:mm:ss.SSS", Locale.CHINA)
+        logI("${formatter.format(Date())}:$str")
     }
 
     override fun clearLog() {

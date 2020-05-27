@@ -17,6 +17,8 @@ fun main() {
 
         override fun clearLog() {
         }
+
+        override fun log(str: String) {}
     })
 }
 

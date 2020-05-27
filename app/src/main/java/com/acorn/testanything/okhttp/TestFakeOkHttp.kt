@@ -18,6 +18,7 @@ fun main() {
 
         }
 
+        override fun log(str: String) {}
     })
 }
 
