@@ -1,20 +1,20 @@
 package com.acorn.testanything.testWithOutput
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
 import com.acorn.testanything.okhttp.TestFakeOkHttp
 import com.acorn.testanything.okhttp.TestOkhttp
 import com.acorn.testanything.rxjava.RxHeart
+import com.acorn.testanything.rxjava.TestOperators
 import com.acorn.testanything.utils.SmsHelper
 import com.acorn.testanything.utils.TimerUtil
-import com.acorn.testanything.utils.log
 import com.acorn.testanything.utils.logI
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_output.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -30,7 +30,7 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
     private val testItems: Array<ITest> = arrayOf(
         TestOkhttp(), TestFakeOkHttp(), TimerUtil(),
         SmsHelper.testInstance(this, this),
-        RxHeart()
+        RxHeart(), TestOperators()
     )
     private lateinit var curTest: ITest
 
@@ -99,6 +99,15 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
     override fun log(str: String) {
         val formatter = SimpleDateFormat("HH:mm:ss.SSS", Locale.CHINA)
         logI("${formatter.format(Date())}:$str")
+    }
+
+    override fun outputByThread(str: String) {
+        val formatter = SimpleDateFormat("HH:mm:ss.SSS", Locale.CHINA)
+        val d = Observable.just<String>("${formatter.format(Date())}:$str")
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { s ->
+                tv.text = "${tv.text}\n$s"
+            }
     }
 
     override fun clearLog() {

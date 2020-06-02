@@ -1,6 +1,7 @@
 package com.acorn.testanything.rxjava
 
 import com.acorn.testanything.retrofit.BaseResult
+import com.acorn.testanything.rxjava.Response.TestResult
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Headers

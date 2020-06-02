@@ -1,4 +1,4 @@
-package com.acorn.testanything.rxjava
+package com.acorn.testanything.rxjava.Response
 
 import android.os.Parcel
 import android.os.Parcelable

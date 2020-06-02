@@ -7,6 +7,9 @@ import com.acorn.testanything.testWithOutput.ITest;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -58,19 +61,19 @@ public class RxHeart implements ITest {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        output.log("loopSequence subscribe");
+                        output.outputByThread("loopSequence subscribe");
                     }
                 })
                 .doOnNext(new Consumer<Integer>() {
                     @Override
                     public void accept(Integer integer) throws Exception {
-                        output.log("loopSequence doOnNext: " + integer);
+                        output.outputByThread("loopSequence doOnNext: " + integer);
                     }
                 })
                 .doOnError(new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        output.log("loopSequence doOnError: " + throwable.getMessage());
+                        output.outputByThread("loopSequence doOnError: " + throwable.getMessage());
                     }
                 })
                 .delay(1, TimeUnit.SECONDS, true)       // 设置delayError为true，表示出现错误的时候也需要延迟5s进行通知，达到无论是请求正常还是请求失败，都是5s后重新订阅，即重新请求。
@@ -81,17 +84,17 @@ public class RxHeart implements ITest {
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(Integer integer) throws Exception {
-                        output.log("onNext:" + integer + "");
+                        output.output("onNext:" + integer + "");
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        output.log("onError:" + throwable.getMessage());
+                        output.output("onError:" + throwable.getMessage());
                     }
                 }, new Action() {
                     @Override
                     public void run() throws Exception {
-                        output.log("onComplete");
+                        output.output("onComplete");
                     }
                 });
     }
