@@ -14,6 +14,10 @@ fun main() {
             println(str)
         }
 
+        override fun outputByThread(str: String) {
+            TODO("Not yet implemented")
+        }
+
         override fun clearLog() {
 
         }
