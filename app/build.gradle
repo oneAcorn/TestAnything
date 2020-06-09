@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
     defaultConfig {
         applicationId "com.acorn.testanything"
         minSdkVersion 15
@@ -58,7 +60,7 @@ dependencies {
 
     //协程
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.0'
-    compile 'com.android.support:multidex:1.0.3'
+    compile 'androidx.multidex:multidex:2.0.0'
 
     //dagger2
     api 'com.google.dagger:dagger:2.28'

@@ -44,6 +44,7 @@
         <activity android:name=".memory.TestMemoryLeakActivity"/>
         <activity android:name=".testWithOutput.TestWithOutputActivity"/>
         <activity android:name=".broadcast.RegisterBroadcastActivity"/>
+        <activity android:name=".mvvm.MVVMActivity"/>
 
         <!--Android 8.0的应用无法继续在其AndroidManifest中为隐式广播注册广播接收器-->
         <receiver android:name=".broadcast.MyBroadcastReceiver">

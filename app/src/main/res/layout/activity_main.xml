@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             tools:context=".MainActivity">
+
         <Button
                 android:id="@+id/btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TestActivity"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
-        <Button android:id="@+id/testWithOutput"
+        <Button
+                android:id="@+id/testWithOutput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TestWithOutputActivity"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
         <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -37,21 +39,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NestedActivity2"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
 
                 <Button
                         android:id="@+id/nestedBtn2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NestedActivity3"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
 
                 <Button
                         android:id="@+id/nestedBtn3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NestedActivity4"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -60,35 +62,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AnimatorActivity"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
         <Button
                 android:id="@+id/regexBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RegEx"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
         <Button
                 android:id="@+id/anyThingBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Anything"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
         <Button
                 android:id="@+id/rxjavaBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RxJava"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
         <Button
                 android:id="@+id/motionBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MotionLayout"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
         <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -104,21 +106,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Constraint Ratio"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
 
                 <Button
                         android:id="@+id/constraintChainsBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Constraint Chains"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
 
                 <Button
                         android:id="@+id/constraintPlaceHolderBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Constraint PlaceHolder"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false" />
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -127,12 +129,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MemoryLeak"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
 
-        <Button android:id="@+id/broadcastBtn"
+        <Button
+                android:id="@+id/broadcastBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Broadcast"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false" />
+
+        <Button
+                android:id="@+id/MVVMBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MVVM" />
     </LinearLayout>
 </ScrollView>

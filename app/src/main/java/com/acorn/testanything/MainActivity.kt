@@ -11,6 +11,7 @@ import com.acorn.testanything.constraintLayout.ConstraintPlaceHolderActivity
 import com.acorn.testanything.constraintLayout.ConstraintRatioActivity
 import com.acorn.testanything.memory.TestMemoryLeakActivity
 import com.acorn.testanything.motionLayout.MotionLayoutActivity
+import com.acorn.testanything.mvvm.MVVMActivity
 import com.acorn.testanything.rxjava.RxJavaActivity
 import com.acorn.testanything.testAnimator.TestAnimatorActivity
 import com.acorn.testanything.testNested.NestedActivity2
@@ -23,6 +24,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +32,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         btn.setOnClickListener {
             startActivity(Intent(this@MainActivity, TestActivity::class.java))
+//            val intent = Intent()
+//            val comp = ComponentName(
+//                "com.nd.hy.android.edu.study.commune",
+//                "com.nd.hy.android.edu.study.commune.view.login.LoginActivity"
+//            )
+//            intent.component = comp
+//            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+//            startActivity(intent)
         }
         testWithOutput.setOnClickListener {
             startActivity(Intent(this@MainActivity, TestWithOutputActivity::class.java))
@@ -72,6 +82,9 @@ class MainActivity : AppCompatActivity() {
         }
         broadcastBtn.setOnClickListener {
             startActivity(Intent(this, RegisterBroadcastActivity::class.java))
+        }
+        MVVMBtn.setOnClickListener {
+            startActivity(Intent(this, MVVMActivity::class.java))
         }
         EventBus.getDefault().register(this)
     }
