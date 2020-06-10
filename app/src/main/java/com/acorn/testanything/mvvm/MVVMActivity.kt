@@ -28,7 +28,10 @@ class MVVMActivity : AppCompatActivity() {
 
     private fun initVm() {
         mTestViewModel.getStateLD().observe(this, Observer {
-            logI("observe:$it")
+            logI("observe A:$it")
+        })
+        mTestViewModel.getStateLD().observe(this, Observer {
+            logI("observe B:$it")
         })
     }
 
