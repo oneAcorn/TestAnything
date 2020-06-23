@@ -1,6 +1,9 @@
 package com.acorn.testanything;
 
 import android.os.Handler;
+
+import com.acorn.commonmodule.TestUtil;
+
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.regex.Pattern;
@@ -15,9 +18,11 @@ public class TestJava {
         System.out.println(testRex("sajfl2@asjf"));
         System.out.println(testRex("321312312"));
         System.out.println(testRex("@#$!$$!#!@#@!"));
+        TestUtil testUtil = new TestUtil();
+        testUtil.abc();
     }
 
-    public static boolean testRex(String input){
+    public static boolean testRex(String input) {
         return Pattern.compile("^(?=.[a-zA-Z])(?=.\\d)\\[^\\]{8,16}$").matcher(input).find();
     }
 }
