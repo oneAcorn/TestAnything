@@ -9,6 +9,6 @@ fun testAAAAA() {
 
 class TestUtil {
     fun abc() {
-        println("abc")
+        println("def")
     }
 }
