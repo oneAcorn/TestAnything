@@ -9,6 +9,7 @@ import com.acorn.testanything.broadcast.RegisterBroadcastActivity
 import com.acorn.testanything.constraintLayout.ConstraintChainsActivity
 import com.acorn.testanything.constraintLayout.ConstraintPlaceHolderActivity
 import com.acorn.testanything.constraintLayout.ConstraintRatioActivity
+import com.acorn.testanything.countdown.TestCountDownActivity
 import com.acorn.testanything.memory.TestMemoryLeakActivity
 import com.acorn.testanything.motionLayout.MotionLayoutActivity
 import com.acorn.testanything.mvvm.MVVMActivity
@@ -85,6 +86,9 @@ class MainActivity : AppCompatActivity() {
         }
         MVVMBtn.setOnClickListener {
             startActivity(Intent(this, MVVMActivity::class.java))
+        }
+        countdownBtn.setOnClickListener {
+            startActivity(Intent(this, TestCountDownActivity::class.java))
         }
         EventBus.getDefault().register(this)
     }
