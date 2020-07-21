@@ -26,26 +26,30 @@ class TestCountDownActivity : AppCompatActivity() {
             ViewModelProvider.NewInstanceFactory()
         ).get(CountdownViewModel::class.java)
     }
-    private val serviceConnection = object : ServiceConnection {
-        override fun onServiceDisconnected(name: ComponentName?) {
+    private var isBindService = false
+    private val serviceConnection: ServiceConnection by lazy {
+        object : ServiceConnection {
+            override fun onServiceDisconnected(name: ComponentName?) {
+            }
+
+            override fun onServiceConnected(name: ComponentName, service: IBinder) {
+                isBindService = true
+                if (service !is CountDownTimerService.MsgBinder) return
+                val countdownService = service.service
+                countdownService.setOnCountDownTimerListener(object :
+                    CountDownTimerService.OnCountDownTimerListener {
+                    override fun onTick1(sec: Int) {
+                        countdownTv3.text = "Service CountdownTimer 经过:${sec}秒"
+                    }
+
+                    override fun onTick2(sec: Int) {
+                        countdownTv4.text = "Service Rxjava 经过:${sec}秒"
+                    }
+
+                })
+            }
+
         }
-
-        override fun onServiceConnected(name: ComponentName, service: IBinder) {
-            if (service !is CountDownTimerService.MsgBinder) return
-            val countdownService = service.service
-            countdownService.setOnCountDownTimerListener(object :
-                CountDownTimerService.OnCountDownTimerListener {
-                override fun onTick1(sec: Int) {
-                    countdownTv3.text = "Service CountdownTimer 经过:${sec}秒"
-                }
-
-                override fun onTick2(sec: Int) {
-                    countdownTv4.text = "Service Rxjava 经过:${sec}秒"
-                }
-
-            })
-        }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +59,8 @@ class TestCountDownActivity : AppCompatActivity() {
             countdown1()
             countdown2()
             countdown34()
+            countdown5()
+            countdown6()
         }
     }
 
@@ -83,9 +89,22 @@ class TestCountDownActivity : AppCompatActivity() {
         bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE)
     }
 
+    private fun countdown5() {
+        countdown(10, 2) { sec ->
+            countdownTv5.text = "倒计时:${sec}秒"
+        }
+    }
+
+    private fun countdown6() {
+        count(3) {
+            countdownTv6.text = "经过:${it}秒"
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         disposable?.dispose()
-        unbindService(serviceConnection)
+        if (isBindService)
+            unbindService(serviceConnection)
     }
 }
