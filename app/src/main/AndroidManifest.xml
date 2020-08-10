@@ -11,6 +11,9 @@
     <!--截取短信验证码用-->
     <uses-permission android:name="android.permission.READ_SMS"/>
 
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -56,6 +59,14 @@
                 android:name=".countdown.CountService"
                 android:enabled="true"
                 android:exported="false" />
+
+        <service
+                android:name=".broadcast.MyService"
+                android:process=":test">
+            <intent-filter android:priority="1000">
+                <action android:name="MyService" />
+            </intent-filter>
+        </service>
 
         <!--Android 8.0的应用无法继续在其AndroidManifest中为隐式广播注册广播接收器-->
         <receiver android:name=".broadcast.MyBroadcastReceiver">

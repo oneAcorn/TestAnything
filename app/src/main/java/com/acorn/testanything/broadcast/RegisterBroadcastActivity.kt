@@ -3,6 +3,7 @@ package com.acorn.testanything.broadcast
 import android.content.ComponentName
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
@@ -20,6 +21,13 @@ class RegisterBroadcastActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register_broadcast)
         //动态注册广播
         registerBtn.setOnClickListener {
+            val serviceIntent = Intent(applicationContext, MyService::class.java)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(serviceIntent)
+            } else {
+                startService(serviceIntent)
+            }
+
             val filter = IntentFilter()
             filter.addAction(Intent.ACTION_POWER_CONNECTED) //usb连接
             filter.addAction(Intent.ACTION_POWER_DISCONNECTED) //usb断开
