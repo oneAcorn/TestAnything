@@ -63,9 +63,10 @@
         <service
                 android:name=".broadcast.MyService"
                 android:process=":test">
-            <intent-filter android:priority="1000">
+            <!--priority只在activity 和 receivers有用，这样写没意义!-->
+            <!--<intent-filter android:priority="1000">
                 <action android:name="MyService" />
-            </intent-filter>
+            </intent-filter>-->
         </service>
 
         <!--Android 8.0的应用无法继续在其AndroidManifest中为隐式广播注册广播接收器-->

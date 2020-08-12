@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -11,6 +12,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.IBinder
+import android.widget.Toast
 import com.acorn.testanything.R
 import com.acorn.testanything.utils.logI
 
@@ -19,6 +21,8 @@ import com.acorn.testanything.utils.logI
  */
 class MyService : Service() {
     private lateinit var receiver: MyBroadcastReceiver
+    private lateinit var receiverInner: BroadcastReceiverInService
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Thread() {
             while (true) {
@@ -45,11 +49,15 @@ class MyService : Service() {
         filter.addAction(action)
         receiver = MyBroadcastReceiver()
         registerReceiver(receiver, filter)
+
+        receiverInner=BroadcastReceiverInService()
+        registerReceiver(receiverInner,filter)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(receiver)
+        unregisterReceiver(receiverInner)
     }
 
     private fun createNotification(): Notification? {
@@ -84,5 +92,15 @@ class MyService : Service() {
                 .setWhen(System.currentTimeMillis()) //设置通知发生时间
             builder.build()
         } else null
+    }
+
+    inner class BroadcastReceiverInService : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Toast.makeText(
+                context,
+                "收到消息2${intent?.action},${intent?.getStringExtra("content")}", Toast.LENGTH_LONG
+            ).show()
+        }
+
     }
 }
