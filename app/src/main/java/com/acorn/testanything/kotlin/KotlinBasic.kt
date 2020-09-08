@@ -6,7 +6,8 @@ package com.acorn.testanything.kotlin
 
 fun main() {
     var test = KotlinBasic()
-    test.inlineFun { "haha" }
+//    test.inlineFun { "haha" }
+    test.groupBy()
 }
 
 class KotlinBasic {
@@ -32,4 +33,29 @@ class KotlinBasic {
     fun otherFunWantFun(getStr: () -> String?) {
         println("?${getStr()}")
     }
+
+    fun groupBy() {
+        val list = mutableListOf<Data>()
+        list.add(Data("张三", 12))
+        list.add(Data("张三", 17))
+        list.add(Data("李四", 23))
+        list.add(Data("张三", 11))
+        list.add(Data("王五", 32))
+        list.add(Data("李四", 22))
+        list.add(Data("张三", 12))
+
+        val newList = mutableListOf<Data>()
+        list.groupBy {
+            it.name
+        }.forEach {
+            println("结果:${it.key}")
+            it.value.forEach { data ->
+                println("结果2:${data.name},${data.age}")
+                newList.add(data)
+            }
+        }
+        println("\n\n final result:${newList}")
+    }
+
+    data class Data(var name: String, var age: Int)
 }
