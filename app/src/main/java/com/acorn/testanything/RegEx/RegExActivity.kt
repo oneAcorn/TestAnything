@@ -3,11 +3,14 @@ package com.acorn.testanything.RegEx
 import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.method.LinkMovementMethod
 import android.util.Patterns
 import android.view.KeyEvent
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
+import com.acorn.testanything.utils.log
 import com.acorn.testanything.utils.logI
 import kotlinx.android.synthetic.main.activity_regex.*
 import java.util.regex.Matcher
@@ -96,13 +99,19 @@ class RegExActivity : AppCompatActivity() {
         }
         testBtn2.setOnClickListener {
             val data =
-                """#在抖音，记录美好生活#这大概就是冰雪美人吧…… http://v.douyin.com/eUWYth/ 复制此链接，打开【抖音短视频】，直接观看视频！"""
-            val matcher = Patterns.WEB_URL.matcher(data)
+                """#在抖音，记录http://www.baidu.com/ 美好生活#这大概就是冰雪美人吧…… http://v.douyin.com/eUWYth/ 复制此链接，打开【抖音短视频】，直接观看视频！"""
+            val str2 = """大家都觉得精彩 http://www.baidu.com 房间附近福建警xhdhh http://tieba.baidu.com"""
+            val matcher = Patterns.WEB_URL.matcher(str2)
             if (matcher.find()) {
-                for(i in 0..matcher.groupCount()) {
+                logI("group11:${matcher.group()}")
+                for (i in 0..matcher.groupCount()) {
                     logI("group:${matcher.group(i)}")
                 }
             }
+            logI("------------------------------------------------------")
+//            fetchUrl(str2)
+            matchTv.movementMethod = LinkMovementMethod.getInstance()
+            matchTv.text = str2.getUrlSpannable(null)
         }
 
         val editorListener = TextView.OnEditorActionListener { v, actionId, event ->
@@ -115,6 +124,47 @@ class RegExActivity : AppCompatActivity() {
         matchEt.setOnEditorActionListener(editorListener)
         testStrEt.setOnEditorActionListener(editorListener)
     }
+
+    private fun fetchUrl(str: String) {
+        var matcher = Patterns.WEB_URL.matcher(str)
+        if (!matcher.find())
+            return
+        val urlSegments = mutableListOf<SpannableData>()
+        var curIndex = 0
+        while (curIndex < str.length) {
+            val subStr = str.substring(curIndex)
+            if (curIndex > 0) {
+                matcher = Patterns.WEB_URL.matcher(subStr)
+                if (!matcher.find())
+                    break
+            }
+            val segment = matcher.group()
+            logI("url segment:$segment")
+            val index = subStr.indexOf(segment)
+            if (index == -1) {
+                break
+            }
+            curIndex += index + segment.length
+            urlSegments.add(SpannableData(index, segment))
+            logI("index:$index,segment:$segment")
+        }
+//        for (i in 0..matcher.groupCount()) {
+//            val segment = matcher.group(i)
+//            logI("url segment:$segment")
+//            if (Patterns.WEB_URL.matcher(segment).find()) { //是url
+//                logI("url segment2:$segment")
+//                val index = str.indexOf(segment, curIndex)
+//                if (index == -1) {
+//                    break
+//                }
+//                curIndex = index + segment.length
+//                urlSegments.add(SpannableData(index, segment))
+//                logI("index:$index,segment:$segment")
+//            }
+//        }
+    }
+
+    data class SpannableData(val index: Int, val str: String)
 
     private fun doRegEx() {
         val startTime = System.currentTimeMillis()

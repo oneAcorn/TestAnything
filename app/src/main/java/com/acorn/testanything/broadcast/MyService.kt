@@ -26,7 +26,7 @@ class MyService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Thread() {
             while (true) {
-                logI("I am alive")
+//                logI("I am alive")
                 Thread.sleep(1000 * 5)
             }
         }
