@@ -3,10 +3,12 @@ package com.acorn.testanything.RegEx
 import android.animation.ObjectAnimator
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Patterns
 import android.view.KeyEvent
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
+import com.acorn.testanything.utils.logI
 import kotlinx.android.synthetic.main.activity_regex.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -92,6 +94,17 @@ class RegExActivity : AppCompatActivity() {
         testRegexBtn.setOnClickListener {
             doRegEx()
         }
+        testBtn2.setOnClickListener {
+            val data =
+                """#在抖音，记录美好生活#这大概就是冰雪美人吧…… http://v.douyin.com/eUWYth/ 复制此链接，打开【抖音短视频】，直接观看视频！"""
+            val matcher = Patterns.WEB_URL.matcher(data)
+            if (matcher.find()) {
+                for(i in 0..matcher.groupCount()) {
+                    logI("group:${matcher.group(i)}")
+                }
+            }
+        }
+
         val editorListener = TextView.OnEditorActionListener { v, actionId, event ->
             if (null != event && event.action == KeyEvent.ACTION_UP) { //有些情况会action_down+action_up会导致重复2次执行
                 return@OnEditorActionListener true
@@ -105,9 +118,11 @@ class RegExActivity : AppCompatActivity() {
 
     private fun doRegEx() {
         val startTime = System.currentTimeMillis()
-        val matcher: Matcher = Pattern.compile(matchEt.text.toString()).matcher(testStrEt.text.toString())
-        val matcher2: Matcher = Pattern.compile(matchEt.text.toString()).matcher(testStrEt.text.toString())
-        matchTitleTv.text="匹配(matches:${matcher2.matches()}):"
+        val matcher: Matcher =
+            Pattern.compile(matchEt.text.toString()).matcher(testStrEt.text.toString())
+        val matcher2: Matcher =
+            Pattern.compile(matchEt.text.toString()).matcher(testStrEt.text.toString())
+        matchTitleTv.text = "匹配(matches:${matcher2.matches()}):"
         if (matcher.find()) {
             val sb = StringBuilder()
             val res = if (matcher.groupCount() > 0) {
