@@ -48,9 +48,7 @@ class KotlinBasic {
         list.groupBy {
             it.name
         }.forEach {
-            println("结果:${it.key}")
             it.value.forEach { data ->
-                println("结果2:${data.name},${data.age}")
                 newList.add(data)
             }
         }

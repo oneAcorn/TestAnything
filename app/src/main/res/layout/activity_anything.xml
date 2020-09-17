@@ -11,6 +11,9 @@
         <TextView
                 android:id="@+id/infoTv"
                 android:layout_width="wrap_content"
+                android:maxWidth="240dp"
+                android:background="#B0C550"
+                android:text="大家都觉得精彩 http://www.baidu.com 房间附近福建警xhdhh http://tieba.baidu.com"
                 android:layout_height="wrap_content" />
 
         <Button
