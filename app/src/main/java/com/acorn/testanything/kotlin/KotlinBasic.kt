@@ -1,5 +1,9 @@
 package com.acorn.testanything.kotlin
 
+import java.lang.RuntimeException
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+
 /**
  * Created by acorn on 2020/4/28.
  */
@@ -7,7 +11,31 @@ package com.acorn.testanything.kotlin
 fun main() {
 //    groupBy()
 //    distinctBy()
-    mapTest()
+//    mapTest()
+    test()
+}
+
+fun test() {
+//    println("abcdefz".toFixedByteArray(10))
+    val myArr = "12345".toByteArray()
+    println("$myArr")
+    val bf = ByteBuffer.wrap(myArr)
+    println("myArr:$myArr,bf:$bf")
+    println("126:${126.toByte()},128:${128.toByte()}")
+
+    val byteBuffer = ByteBuffer.allocate(9)
+        .apply {
+            order(ByteOrder.BIG_ENDIAN)
+            putChar(0x53.toChar())
+            putShort(0x00)
+            putInt(12947127)
+            put(0x0d)
+        }
+    println("byteBuffer:$byteBuffer")
+
+    //wrap
+    val bb = ByteBuffer.wrap(byteBuffer.array(), 4, 4)
+    println("长度字段:${bb.int}")
 }
 
 var what: Int? = 0
