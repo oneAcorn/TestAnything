@@ -80,5 +80,12 @@ fun main() {
     ss[2] = 5
     ss[3] = 6
     ss[4] = 1
+    ss[5] = 0
+    ss[6] = 0
+    ss[7] = 0
+    val bf1 = ByteBuffer.wrap(ss, 4, 4)
+    val byteArrNew = ByteArray(3)
+    //由于ReadProtocol里截取的是除Header外的ByteArray，但是约定的data后面有一个1字节的End标识,所以要减去
+    System.arraycopy(ss, 0, byteArrNew, 0, 3)
     println("")
 }

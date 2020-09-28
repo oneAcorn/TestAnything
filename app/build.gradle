@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.acorn.testanything"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -72,4 +72,11 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.2.5"
 
     implementation project(":common")
+
+    implementation('com.tencent:mmkv-static:1.1.1')
+    implementation 'com.github.SumiMakito:AwesomeQRCode:1.2.0'
+    implementation 'com.github.kenglxn.QRGen:android:2.6.0'
+
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }

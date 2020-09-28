@@ -13,6 +13,7 @@ import com.acorn.testanything.countdown.TestCountDownActivity
 import com.acorn.testanything.memory.TestMemoryLeakActivity
 import com.acorn.testanything.motionLayout.MotionLayoutActivity
 import com.acorn.testanything.mvvm.MVVMActivity
+import com.acorn.testanything.qr.QRActivity
 import com.acorn.testanything.rxjava.RxJavaActivity
 import com.acorn.testanything.testAnimator.TestAnimatorActivity
 import com.acorn.testanything.testNested.NestedActivity2
@@ -89,6 +90,9 @@ class MainActivity : AppCompatActivity() {
         }
         countdownBtn.setOnClickListener {
             startActivity(Intent(this, TestCountDownActivity::class.java))
+        }
+        qrBtn.setOnClickListener {
+            startActivity(Intent(this, QRActivity::class.java))
         }
         EventBus.getDefault().register(this)
     }
