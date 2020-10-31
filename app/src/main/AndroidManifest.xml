@@ -51,6 +51,7 @@
         <activity android:name=".mvvm.MVVMActivity" />
         <activity android:name=".qr.QRActivity" />
         <activity android:name=".countdown.TestCountDownActivity" />
+        <activity android:name=".mmkv.MMKVTestActivity" />
 
         <service
                 android:name=".countdown.CountDownTimerService"

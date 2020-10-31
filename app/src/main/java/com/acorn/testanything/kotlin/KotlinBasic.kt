@@ -11,8 +11,8 @@ import java.nio.ByteOrder
 fun main() {
 //    groupBy()
 //    distinctBy()
-//    mapTest()
-    test()
+    mapTest()
+//    test()
 }
 
 fun test() {
@@ -106,6 +106,14 @@ fun mapTest() {
     list.add(Data("张三", 12))
     val newList = list.map { it.name }
     println("$newList")
+    val newList2 = list.map {
+        it.name
+    }.filter {
+        it != "张三"
+    }.map {
+        it + ".."
+    }
+    println("$newList2")
 }
 
 data class Data(var name: String, var age: Int)

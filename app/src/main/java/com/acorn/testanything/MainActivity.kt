@@ -11,6 +11,7 @@ import com.acorn.testanything.constraintLayout.ConstraintPlaceHolderActivity
 import com.acorn.testanything.constraintLayout.ConstraintRatioActivity
 import com.acorn.testanything.countdown.TestCountDownActivity
 import com.acorn.testanything.memory.TestMemoryLeakActivity
+import com.acorn.testanything.mmkv.MMKVTestActivity
 import com.acorn.testanything.motionLayout.MotionLayoutActivity
 import com.acorn.testanything.mvvm.MVVMActivity
 import com.acorn.testanything.qr.QRActivity
@@ -93,6 +94,9 @@ class MainActivity : AppCompatActivity() {
         }
         qrBtn.setOnClickListener {
             startActivity(Intent(this, QRActivity::class.java))
+        }
+        mmkvBtn.setOnClickListener {
+            startActivity(Intent(this, MMKVTestActivity::class.java))
         }
         EventBus.getDefault().register(this)
     }

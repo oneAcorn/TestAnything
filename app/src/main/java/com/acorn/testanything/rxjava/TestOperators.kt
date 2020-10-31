@@ -11,6 +11,7 @@ import io.reactivex.functions.Function3
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import java.util.*
+import java.util.concurrent.TimeUnit
 import java.util.function.BiFunction
 
 /**
@@ -18,7 +19,23 @@ import java.util.function.BiFunction
  */
 class TestOperators : ITest {
     override fun test(output: IOutput) {
-        testCombineLatest(output)
+//        testCombineLatest(output)
+        test1(output)
+    }
+
+    private fun test1(output: IOutput) {
+        val list = mutableListOf<String>()
+        list.add("a")
+        list.add("bb")
+        list.add("c")
+        val a = Observable.fromIterable(list)
+            .filter {
+                output.output("filter:$it")
+                it == "a"
+            }
+            .subscribe {
+                output.output("subscribe:$it")
+            }
     }
 
     private fun getIntObservable(): Observable<Int> {
