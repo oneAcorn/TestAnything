@@ -30,7 +30,7 @@ class TestWithOutputActivity : AppCompatActivity(), IOutput {
     private val testItems: Array<ITest> = arrayOf(
         TestOkhttp(), TestFakeOkHttp(), TimerUtil(),
         SmsHelper.testInstance(this, this),
-        RxHeart(), TestOperators()
+        RxHeart(), TestOperators(), TestUniqueCode(this)
     )
     private lateinit var curTest: ITest
 
