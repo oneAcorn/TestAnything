@@ -3,6 +3,7 @@ package com.acorn.testanything.testAnimator
 import android.animation.*
 import android.graphics.Color
 import android.os.Bundle
+import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.R
 import kotlinx.android.synthetic.main.activity_test_animator.*
@@ -14,6 +15,9 @@ import org.greenrobot.eventbus.EventBus
 class TestAnimatorActivity : AppCompatActivity() {
     private lateinit var objectAnimator2: ObjectAnimator
     private var isNeedReverse = false
+    private lateinit var rotaAnim: ValueAnimator
+    private var isRotaReverse = false
+    private var curAngle = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +76,16 @@ class TestAnimatorActivity : AppCompatActivity() {
                 start()
             }
         }
+
+        testBtn6.setOnClickListener {
+            if (rotaAnim.isStarted) {
+                rotaAnim.cancel()
+                isRotaReverse = !isRotaReverse
+                rotaAnim.start()
+            } else {
+                rotaAnim.start()
+            }
+        }
     }
 
     private fun initAnim() {
@@ -106,6 +120,27 @@ class TestAnimatorActivity : AppCompatActivity() {
                     isNeedReverse = !isNeedReverse
                 }
             })
+        }
+
+        rotaAnim = ValueAnimator.ofFloat(0f, 1f).apply {
+            duration = 5000
+            repeatMode = ObjectAnimator.RESTART
+            repeatCount = ObjectAnimator.INFINITE
+            interpolator = LinearInterpolator()
+            addUpdateListener {
+                testBtn6.rotation = curAngle
+                if (isRotaReverse)
+                    curAngle--
+                else {
+                    curAngle++
+                }
+            }
+//            addListener(object : AnimatorListenerAdapter() {
+//                override fun onAnimationStart(animation: Animator?, isReverse: Boolean) {
+//                    super.onAnimationStart(animation, isReverse)
+//                    isRotaReverse = isReverse
+//                }
+//            })
         }
     }
 }
