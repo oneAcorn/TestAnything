@@ -1,5 +1,6 @@
 package com.acorn.testanything.kotlin
 
+import org.webrtc.VideoCapturerAndroid
 import java.lang.RuntimeException
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -9,9 +10,9 @@ import java.nio.ByteOrder
  */
 
 fun main() {
-//    groupBy()
+    groupBy()
 //    distinctBy()
-    mapTest()
+//    mapTest()
 //    test()
 }
 
@@ -70,6 +71,15 @@ fun groupBy() {
     list.add(Data("王五", 32))
     list.add(Data("李四", 22))
     list.add(Data("张三", 12))
+
+    //
+    val mStep = 2
+    val totalSize = list.size
+    for (i in 0 until list.size step mStep) {
+        val toIndex = i + mStep
+        val subList = list.subList(i, if (toIndex > totalSize) totalSize else toIndex)
+        println("i:$i,name:${subList}")
+    }
 
     val newList = mutableListOf<Data>()
     list.groupBy {
