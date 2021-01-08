@@ -21,7 +21,11 @@ class DrawableActivity : AppCompatActivity() {
 //            //关闭硬件加速
 //            layout1.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 //        }
-        val drawable = OverlayDrawable(Color.YELLOW, Color.MAGENTA, Color.LTGRAY)
+        val drawable = OverlayDrawable2(
+            Color.parseColor("#ccffff00"),
+            Color.parseColor("#a0ff00ff"),
+            Color.parseColor("#8000ffff")
+        )
         layout1.setPadding(
             layout1.paddingLeft,
             layout1.paddingTop,
