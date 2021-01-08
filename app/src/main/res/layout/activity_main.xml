@@ -162,5 +162,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="MMKV" />
+
+        <Button
+                android:id="@+id/drawableBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drawable"
+                android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

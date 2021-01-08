@@ -1,4 +1,4 @@
-package com.acorn.testanything.testAnimator
+package com.acorn.testanything.drawable
 
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
@@ -84,7 +84,9 @@ class ClickAnimDrawable(private val size: Int = 20.dp, private val initAlpha: In
             tempAlpha = alpha
             invalidateSelf()
         }
-        val scaleHolder = PropertyValuesHolder.ofFloat("mScale", 1.0f, ANIMATOR_SCALE_RATE)
+        val scaleHolder = PropertyValuesHolder.ofFloat("mScale", 1.0f,
+            ANIMATOR_SCALE_RATE
+        )
         val alphaHolder = PropertyValuesHolder.ofInt("mAlpha", 125, 255, 0)
         pressAnim = ValueAnimator.ofPropertyValuesHolder(scaleHolder, alphaHolder)
         pressAnim.interpolator = AccelerateInterpolator()

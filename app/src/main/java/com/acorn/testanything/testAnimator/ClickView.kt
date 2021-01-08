@@ -2,13 +2,13 @@ package com.acorn.testanything.testAnimator
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import androidx.core.view.MotionEventCompat
+import com.acorn.testanything.drawable.ClickAnimDrawable
 import com.acorn.testanything.utils.dp
 import kotlin.math.abs
 
@@ -16,7 +16,8 @@ import kotlin.math.abs
  * Created by acorn on 2020/12/29.
  */
 class ClickView : View {
-    private var clickDrawable: ClickAnimDrawable = ClickAnimDrawable(20.dp)
+    private var clickDrawable: ClickAnimDrawable =
+        ClickAnimDrawable(20.dp)
 
     private var lastX: Float = 0f
     private var lastY: Float = 0f
