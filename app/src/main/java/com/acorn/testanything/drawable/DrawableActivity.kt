@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_drawable.*
  * Created by acorn on 2021/1/8.
  */
 class DrawableActivity : AppCompatActivity() {
+    private var count = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,7 @@ class DrawableActivity : AppCompatActivity() {
             Color.parseColor("#ccffff00"),
             Color.parseColor("#a0ff00ff"),
             Color.parseColor("#8000ffff")
+            , overlayCardCount = 1
         )
         layout1.setPadding(
             layout1.paddingLeft,
@@ -33,5 +35,19 @@ class DrawableActivity : AppCompatActivity() {
             drawable.getTotalOverlayHeight().toInt()
         )
         layout1.background = drawable
+
+        btn.setOnClickListener {
+            (layout1.background as? OverlayDrawable2)?.run {
+                overlayCardCount = count % 3
+                layout1.setPadding(
+                    layout1.paddingLeft,
+                    layout1.paddingTop,
+                    layout1.paddingRight,
+                    getTotalOverlayHeight().toInt()
+                )
+            }
+            count++
+            layout1.invalidate()
+        }
     }
 }

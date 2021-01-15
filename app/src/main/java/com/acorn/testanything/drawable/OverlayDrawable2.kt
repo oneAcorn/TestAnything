@@ -14,7 +14,8 @@ class OverlayDrawable2(
     @ColorInt private val overlayColor1: Int,
     @ColorInt private val overlayColor2: Int,
     private val overlayHeight: Float = 7f.dp,
-    private val roundRadius: Float = 7f.dp
+    private val roundRadius: Float = 8f.dp,
+    var overlayCardCount: Int = 2
 ) :
     Drawable() {
     private var mainRectF: RectF = RectF()
@@ -33,6 +34,8 @@ class OverlayDrawable2(
         paint.color = mainColor
         canvas.drawRoundRect(mainRectF, roundRadius, roundRadius, paint)
 
+        if (overlayCardCount < 1)
+            return
         paint.color = overlayColor1
         //新建layer,这里paint的透明度才是决定整体透明度
         val layerId1 =
@@ -40,6 +43,7 @@ class OverlayDrawable2(
         //这里需要用不透明的,不然会有问题
         paint.color = overlayColor1
         canvas.drawRoundRect(overlayRectF1, roundRadius, roundRadius, paint)
+        paint.color = Color.WHITE
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.CLEAR)
         canvas.drawRoundRect(overlaySrcRect1F, roundRadius, roundRadius, paint)
         paint.xfermode = null
@@ -50,6 +54,8 @@ class OverlayDrawable2(
          */
         canvas.restoreToCount(layerId1)
 
+        if (overlayCardCount < 2)
+            return
         paint.color = overlayColor2
         val layerId2 =
             canvas.saveLayer(0f, 0f, boundsF.right, boundsF.bottom, paint, Canvas.ALL_SAVE_FLAG)
@@ -62,7 +68,7 @@ class OverlayDrawable2(
         canvas.restoreToCount(layerId2)
     }
 
-    fun getTotalOverlayHeight() = overlayHeight * 2
+    fun getTotalOverlayHeight() = overlayHeight * overlayCardCount
 
     override fun onBoundsChange(bounds: Rect) {
         super.onBoundsChange(bounds)
@@ -74,14 +80,16 @@ class OverlayDrawable2(
         )
         mainRectF = RectF(
             boundsF.left, boundsF.top, boundsF.right,
-            boundsF.bottom - overlayHeight * 2f
+            boundsF.bottom - overlayHeight * overlayCardCount
         )
+
         overlayRectF1 = RectF(
-            boundsF.left, boundsF.bottom - overlayHeight * 4, boundsF.right,
-            boundsF.bottom - overlayHeight
+            boundsF.left, boundsF.bottom - overlayHeight * (overlayCardCount + 2), boundsF.right,
+            boundsF.bottom - overlayHeight * (overlayCardCount - 1)
         )
         overlaySrcRect1F = RectF(overlayRectF1)
-        overlaySrcRect1F.bottom = boundsF.bottom - overlayHeight * 2
+        overlaySrcRect1F.bottom = boundsF.bottom - overlayHeight * (overlayCardCount)
+
         overlayRectF2 = RectF(
             boundsF.left, boundsF.bottom - overlayHeight * 3, boundsF.right,
             boundsF.bottom
