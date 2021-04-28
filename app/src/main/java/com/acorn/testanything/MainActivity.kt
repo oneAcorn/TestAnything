@@ -22,6 +22,7 @@ import com.acorn.testanything.testNested.NestedActivity2
 import com.acorn.testanything.testNested.NestedActivity3
 import com.acorn.testanything.testNested.NestedActivity4
 import com.acorn.testanything.testWithOutput.TestWithOutputActivity
+import com.acorn.testanything.utils.TransparentDialog
 import com.acorn.testanything.utils.log
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -101,6 +102,9 @@ class MainActivity : AppCompatActivity() {
         }
         drawableBtn.setOnClickListener {
             startActivity(Intent(this, DrawableActivity::class.java))
+        }
+        testDialogBtn.setOnClickListener {
+            TransparentDialog().show(supportFragmentManager,"TransparentDialog")
         }
         EventBus.getDefault().register(this)
     }

@@ -1,11 +1,15 @@
 package com.acorn.testanything.utils
 
+import android.content.res.Resources
 import android.util.TypedValue
 import com.acorn.testanything.MyApplication
 
 /**
  * Created by acorn on 2020/9/11.
  */
+// 屏幕宽高
+val screenWidth get() = Resources.getSystem().displayMetrics.widthPixels
+val screenHeight get() = Resources.getSystem().displayMetrics.heightPixels
 
 var Int.dp: Int
     get() = this.dp()
