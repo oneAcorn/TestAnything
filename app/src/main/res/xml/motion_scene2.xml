@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Transition
+            app:constraintSetEnd="@id/end"
+            app:constraintSetStart="@id/start"
+            app:duration="10000">
+
+        <KeyFrameSet>
+            <KeyPosition
+                    app:framePosition="50"
+                    app:keyPositionType="parentRelative"
+                    app:motionTarget="@id/iv1"
+                    app:percentY="0.5" />
+            <!--前半段的动画效果：逆时针旋转一圈，同时放大一倍-->
+            <KeyAttribute
+                    android:rotation="-360"
+                    android:scaleX="2.0"
+                    android:scaleY="2.0"
+                    app:framePosition="50"
+                    app:motionTarget="@id/iv1" />
+            <!--后半段的动画效果：逆时针旋转一圈，同时变回原样-->
+            <KeyAttribute
+                    android:rotation="-720"
+                    app:framePosition="100"
+                    app:motionTarget="@id/iv1" />
+            <!--延迟动画——0-85过程中将透明度一直维持在0.0-->
+            <KeyAttribute
+                    android:alpha="0.0"
+                    app:framePosition="30"
+                    app:motionTarget="@id/iv1" />
+            <KeyAttribute
+                    android:alpha="1.0"
+                    app:framePosition="50"
+                    app:motionTarget="@id/iv1" />
+            <KeyAttribute
+                    android:alpha="0.0"
+                    app:framePosition="70"
+                    app:motionTarget="@id/iv1" />
+            <KeyAttribute
+                    android:alpha="1.0"
+                    app:framePosition="100"
+                    app:motionTarget="@id/iv1" />
+        </KeyFrameSet>
+
+        <OnClick
+                app:clickAction="toggle"
+                app:targetId="@id/iv1" />
+
+        <!--        <OnSwipe-->
+        <!--                app:dragDirection="dragRight"-->
+        <!--                app:touchAnchorId="@id/iv1"-->
+        <!--                app:touchAnchorSide="right" />-->
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+                android:id="@+id/iv1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+                android:id="@+id/iv1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+</MotionScene>
