@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <com.acorn.testanything.TestViewGroup android:layout_width="wrap_content"
-                                          android:layout_height="match_parent"
-                                          android:background="#C2B70E"
-                                          app:testAAA="父控件会接受我"
-                                          app:testBBBB="子控件会接受我">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <com.acorn.testanything.TestViewGroup
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="150dp"
+            android:background="#C2B70E"
+            app:testAAA="父控件会接受我"
+            app:testBBBB="子控件会接受我">
 
     </com.acorn.testanything.TestViewGroup>
+
+
+    <com.acorn.testanything.TestView
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
 </LinearLayout>

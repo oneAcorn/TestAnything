@@ -1,8 +1,11 @@
 package com.acorn.testanything
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
+import android.view.PointerIcon
 import android.view.View
 import com.acorn.testanything.utils.log
 
@@ -22,6 +25,7 @@ class TestView @JvmOverloads constructor(
             log("son:${getString(R.styleable.TestAttrs_testBBBB)}")
             recycle()
         }
+        setBackgroundColor(Color.GREEN)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -44,5 +48,9 @@ class TestView @JvmOverloads constructor(
             height = heightSpecSize
         }
         setMeasuredDimension(width, height)
+    }
+
+    override fun onResolvePointerIcon(event: MotionEvent?, pointerIndex: Int): PointerIcon {
+        return super.onResolvePointerIcon(event, pointerIndex)
     }
 }
