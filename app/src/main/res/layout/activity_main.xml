@@ -171,11 +171,16 @@
                 android:textAllCaps="false" />
 
         <Button
+                android:id="@+id/testDialogBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAllCaps="true"
-                android:id="@+id/testDialogBtn"
                 android:text="testDialog"
-            />
+                android:textAllCaps="false" />
+        <Button
+                android:id="@+id/barHideBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="隐藏状态栏导航栏"
+                android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

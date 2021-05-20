@@ -22,8 +22,8 @@
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            tools:replace="android:allowBackup,android:supportsRtl"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            tools:replace="android:allowBackup,android:supportsRtl">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +54,8 @@
         <activity android:name=".qr.QRActivity" />
         <activity android:name=".countdown.TestCountDownActivity" />
         <activity android:name=".mmkv.MMKVTestActivity" />
-        <activity android:name=".drawable.DrawableActivity"/>
+        <activity android:name=".drawable.DrawableActivity" />
+        <activity android:name=".bar.StatusNavBarHideActivity" />
 
         <service
                 android:name=".countdown.CountDownTimerService"

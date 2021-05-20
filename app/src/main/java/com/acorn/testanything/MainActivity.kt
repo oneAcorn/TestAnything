@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.acorn.testanything.RegEx.RegExActivity
 import com.acorn.testanything.anything.AnythingActivity
+import com.acorn.testanything.bar.StatusNavBarHideActivity
 import com.acorn.testanything.broadcast.RegisterBroadcastActivity
 import com.acorn.testanything.constraintLayout.ConstraintChainsActivity
 import com.acorn.testanything.constraintLayout.ConstraintPlaceHolderActivity
@@ -104,7 +105,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, DrawableActivity::class.java))
         }
         testDialogBtn.setOnClickListener {
-            TransparentDialog().show(supportFragmentManager,"TransparentDialog")
+            TransparentDialog().show(supportFragmentManager, "TransparentDialog")
+        }
+        barHideBtn.setOnClickListener {
+            startActivity(Intent(this, StatusNavBarHideActivity::class.java))
         }
         EventBus.getDefault().register(this)
     }
