@@ -1,5 +1,7 @@
 package com.acorn.testanything.genericity;
 
+import com.acorn.testanything.kotlin.Data;
+
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -15,7 +17,11 @@ public class javaTest {
         //error!!
         //testSuper(new ArrayList<Cat>());
 
-        test();
+//        test();
+
+        Data data = new Data("方法", 111);
+        testFunParam(data);
+        System.out.println("data out fun :" + data);
     }
 
     private static void testExtends(List<? extends Animal> list) {
@@ -49,5 +55,10 @@ public class javaTest {
         System.out.println("ref4 isNull?:" + (ref.get() == null)
                 + ",obj isNull?:" + (obj == null)
                 + ",obj hashcode:" + obj.hashCode());
+    }
+
+    private static void testFunParam(Data data) {
+        data.setName("dfdf");
+        System.out.println("data in fun :" + data);
     }
 }

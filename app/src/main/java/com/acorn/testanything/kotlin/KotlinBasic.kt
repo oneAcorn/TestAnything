@@ -10,10 +10,14 @@ import java.nio.ByteOrder
  */
 
 fun main() {
-    groupBy()
+//    groupBy()
 //    distinctBy()
 //    mapTest()
 //    test()
+
+    val data=Data("啊啊",33)
+    testFunParam(data)
+    println("data out fun:$data")
 }
 
 fun test() {
@@ -124,6 +128,11 @@ fun mapTest() {
         it + ".."
     }
     println("$newList2")
+}
+
+fun testFunParam(data:Data){
+    data.name="ffffaaa"
+    println("data in fun:$data")
 }
 
 data class Data(var name: String, var age: Int)
