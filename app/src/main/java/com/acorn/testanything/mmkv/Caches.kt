@@ -13,4 +13,6 @@ object Caches {
 
     var str2: String by mmkv.string()
     var testBean2: TestBean by mmkv.parcelable()
+
+    var lastCountTimeStamp:Long by mmkv.long()
 }

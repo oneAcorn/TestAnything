@@ -11,6 +11,19 @@
             android:text="Start Countdown"
             android:textAllCaps="false" />
 
+    <Button
+            android:id="@+id/realTimeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="刷新真实时间" />
+
+    <TextView
+            android:id="@+id/realTimeSpanTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
     <TextView
             android:id="@+id/countdownTv1"
             android:layout_width="wrap_content"
@@ -50,6 +63,13 @@
 
     <TextView
             android:id="@+id/countdownTv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+
+    <TextView
+            android:id="@+id/countdownTv7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
