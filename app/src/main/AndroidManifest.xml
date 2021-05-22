@@ -56,6 +56,7 @@
         <activity android:name=".mmkv.MMKVTestActivity" />
         <activity android:name=".drawable.DrawableActivity" />
         <activity android:name=".bar.StatusNavBarHideActivity" />
+        <activity android:name=".service.TestServiceActivity" />
 
         <service
                 android:name=".countdown.CountDownTimerService"
@@ -75,6 +76,8 @@
                 <action android:name="MyService" />
             </intent-filter>-->
         </service>
+
+        <service android:name=".service.TestService" />
 
         <!--Android 8.0的应用无法继续在其AndroidManifest中为隐式广播注册广播接收器-->
         <receiver android:name=".broadcast.MyBroadcastReceiver">
