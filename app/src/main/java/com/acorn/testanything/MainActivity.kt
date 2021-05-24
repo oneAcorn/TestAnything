@@ -13,6 +13,7 @@ import com.acorn.testanything.countdown.TestCountDownActivity
 import com.acorn.testanything.demo.Demo
 import com.acorn.testanything.drawable.DrawableActivity
 import com.acorn.testanything.memory.TestMemoryLeakActivity
+import com.acorn.testanything.memory.TestMemoryLeakActivity2
 import com.acorn.testanything.mmkv.MMKVTestActivity
 import com.acorn.testanything.motionLayout.MotionLayoutActivity
 import com.acorn.testanything.mvvm.MVVMActivity
@@ -54,6 +55,7 @@ class MainActivity : BaseDemoAdapterActivity() {
             Demo("Constraint Chains", activity = ConstraintChainsActivity::class.java),
             Demo("Constraint PlaceHolder", activity = ConstraintPlaceHolderActivity::class.java),
             Demo("MemoryLeak", activity = TestMemoryLeakActivity::class.java),
+            Demo("MemoryLeak2", activity = TestMemoryLeakActivity2::class.java),
             Demo("Broadcast", activity = RegisterBroadcastActivity::class.java),
             Demo("MVVM", activity = MVVMActivity::class.java),
             Demo("Countdown", activity = TestCountDownActivity::class.java),

@@ -57,6 +57,7 @@
         <activity android:name=".drawable.DrawableActivity" />
         <activity android:name=".bar.StatusNavBarHideActivity" />
         <activity android:name=".service.TestServiceActivity" />
+        <activity android:name=".memory.TestMemoryLeakActivity2" />
 
         <service
                 android:name=".countdown.CountDownTimerService"
