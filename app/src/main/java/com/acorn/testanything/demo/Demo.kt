@@ -10,5 +10,9 @@ data class Demo(
     val id: Int? = null,
     val description: String? = null,
     val activity: Class<*>? = null,
-    val bundle: Bundle? = null
+    val bundle: Bundle? = null,
+    var mainItemBgColor: Int = 0,
+    var isExpanded: Boolean = false,
+    var isSubItem: Boolean = false,
+    val subItems: List<Demo>? = null
 )

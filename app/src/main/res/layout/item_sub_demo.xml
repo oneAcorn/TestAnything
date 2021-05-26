@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_sub_item_bg"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp">
+
+    <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            tools:text="aaa" />
+
+    <TextView
+            android:id="@+id/descriptionTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:textSize="12sp"
+            android:visibility="gone"
+            tools:text="ffffffffffffffffffffffffffffffff" />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#292828"
+            android:paddingTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+</LinearLayout>

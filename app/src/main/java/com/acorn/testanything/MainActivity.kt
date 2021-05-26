@@ -25,6 +25,7 @@ import com.acorn.testanything.testNested.NestedActivity2
 import com.acorn.testanything.testNested.NestedActivity3
 import com.acorn.testanything.testNested.NestedActivity4
 import com.acorn.testanything.testWithOutput.TestWithOutputActivity
+import com.acorn.testanything.thread.ThreadActivity
 import com.acorn.testanything.utils.TransparentDialog
 import com.acorn.testanything.utils.log
 import org.greenrobot.eventbus.EventBus
@@ -41,21 +42,44 @@ class MainActivity : BaseDemoAdapterActivity() {
 
     override fun getItems(): Array<Demo> {
         return arrayOf(
-            Demo("TestActivity", activity = TestActivity::class.java),
-            Demo("TestWithOutputActivity", activity = TestWithOutputActivity::class.java),
-            Demo("NestedActivity2", activity = NestedActivity2::class.java),
-            Demo("NestedActivity3", activity = NestedActivity3::class.java),
-            Demo("NestedActivity4", activity = NestedActivity4::class.java),
-            Demo("AnimatorActivity", activity = TestAnimatorActivity::class.java),
+            Demo(
+                "Anything", subItems = arrayListOf(
+                    Demo("TestActivity", activity = TestActivity::class.java),
+                    Demo("TestWithOutputActivity", activity = TestWithOutputActivity::class.java),
+                    Demo("Anything", activity = AnythingActivity::class.java)
+                )
+            ),
+            Demo(
+                "NestedScrollView", subItems = arrayListOf(
+                    Demo("NestedActivity2", activity = NestedActivity2::class.java),
+                    Demo("NestedActivity3", activity = NestedActivity3::class.java),
+                    Demo("NestedActivity4", activity = NestedActivity4::class.java)
+                )
+            ),
+            Demo(
+                "Animation", subItems = arrayListOf(
+                    Demo("AnimatorActivity", activity = TestAnimatorActivity::class.java),
+                    Demo("MotionLayout", activity = MotionLayoutActivity::class.java)
+                )
+            ),
             Demo("RegEx", activity = RegExActivity::class.java),
-            Demo("Anything", activity = AnythingActivity::class.java),
             Demo("RxJava", activity = RxJavaActivity::class.java),
-            Demo("MotionLayout", activity = MotionLayoutActivity::class.java),
-            Demo("Constraint Ratio", activity = ConstraintRatioActivity::class.java),
-            Demo("Constraint Chains", activity = ConstraintChainsActivity::class.java),
-            Demo("Constraint PlaceHolder", activity = ConstraintPlaceHolderActivity::class.java),
-            Demo("MemoryLeak", activity = TestMemoryLeakActivity::class.java),
-            Demo("MemoryLeak2", activity = TestMemoryLeakActivity2::class.java),
+            Demo(
+                "ConstraintLayout", subItems = arrayListOf(
+                    Demo("Constraint Ratio", activity = ConstraintRatioActivity::class.java),
+                    Demo("Constraint Chains", activity = ConstraintChainsActivity::class.java),
+                    Demo(
+                        "Constraint PlaceHolder",
+                        activity = ConstraintPlaceHolderActivity::class.java
+                    )
+                )
+            ),
+            Demo(
+                "Memory", subItems = arrayListOf(
+                    Demo("MemoryLeak", activity = TestMemoryLeakActivity::class.java),
+                    Demo("MemoryLeak2", activity = TestMemoryLeakActivity2::class.java)
+                )
+            ),
             Demo("Broadcast", activity = RegisterBroadcastActivity::class.java),
             Demo("MVVM", activity = MVVMActivity::class.java),
             Demo("Countdown", activity = TestCountDownActivity::class.java),
@@ -64,7 +88,12 @@ class MainActivity : BaseDemoAdapterActivity() {
             Demo("Drawable", activity = DrawableActivity::class.java),
             Demo("testDialog", id = 1000),
             Demo("隐藏状态栏导航栏", activity = StatusNavBarHideActivity::class.java),
-            Demo("测试Service", activity = TestServiceActivity::class.java)
+            Demo("测试Service", activity = TestServiceActivity::class.java),
+            Demo(
+                "测试Thread",
+                description = "Looper & HandlerThread",
+                activity = ThreadActivity::class.java
+            )
         )
     }
 

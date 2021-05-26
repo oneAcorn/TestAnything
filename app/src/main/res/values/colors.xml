@@ -3,6 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="itemColor1">#F8F7F1</color>
-    <color name="itemColor2">#B3B2AF</color>
+    <color name="itemColorLight">#F8F7F1</color>
+    <color name="itemColorLightPress">#CFCFCC</color>
+    <color name="itemColorDark">#B3B2AF</color>
+    <color name="itemColorDarkPress">#91918F</color>
+    <color name="subItemColor">#F4EAAC</color>
+    <color name="subItemColorPress">#D6C86F</color>
 </resources>
