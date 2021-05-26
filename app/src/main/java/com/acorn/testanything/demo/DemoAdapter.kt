@@ -7,9 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.acorn.testanything.R
-import com.acorn.testanything.utils.logI
-import kotlinx.android.synthetic.main.item_demo.view.*
-import kotlinx.android.synthetic.main.item_sub_demo.view.*
 
 /**
  * Created by acorn on 2021/5/21.
@@ -66,7 +63,7 @@ class DemoAdapter(context: Context, list: Array<Demo>) :
         payloads: MutableList<Any>
     ) {
         super.onBindViewHolder(holder, position, payloads)
-        logI("onBindViewHolder position:$position, payloads isNotEmpty:${payloads.isNotEmpty()}")
+//        logI("onBindViewHolder position:$position, payloads isNotEmpty:${payloads.isNotEmpty()}")
         if (payloads.isEmpty()) { //payloads为空,刷新整体
             (holder as? IDemoViewHolder)?.run {
                 bindData(mDatas[position], position)
@@ -128,6 +125,7 @@ class DemoAdapter(context: Context, list: Array<Demo>) :
                     toggleSubItems(data)
                 } else {
                     val id = data.id ?: position
+                    //这里因为notifyinsert/remove的原因,position可能有错位.data是正确的,想获取正确的position,使用mDatas.indexOf(data).
                     onItemClickListener?.invoke(data, id)
                 }
             }
