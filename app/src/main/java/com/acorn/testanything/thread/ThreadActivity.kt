@@ -14,7 +14,7 @@ class ThreadActivity : BaseDemoAdapterActivity() {
     private val myThread: MyThread by lazy { MyThread() }
     private val handlerThread: HandlerThread by lazy {
         //线程优先级,系统默认为5.范围[1-10].数值越大，优先级越大，cpu优先调动概率越大
-        HandlerThread("test",5)
+        HandlerThread("test", 5)
     }
     private lateinit var handler: Handler
 
@@ -24,14 +24,16 @@ class ThreadActivity : BaseDemoAdapterActivity() {
                 "普通Thread+Looper", subItems = arrayListOf(
                     Demo("启动Thread", id = 1000),
                     Demo("发送消息", id = 1001),
-                    Demo("退出Looper", id = 1002)
+                    Demo("退出Looper", id = 1002, description = "退出后无法收到新消息")
                 )
             ),
             Demo(
-                "HandlerThread", subItems = arrayListOf(
+                "HandlerThread",
+                description = "普通Thread+Looper或HandlerThread,两种写法没有本质不同,只是HandlerThread简化了调用而已.",
+                subItems = arrayListOf(
                     Demo("启动Thread", id = 2000),
                     Demo("发送消息", id = 2001),
-                    Demo("退出Looper", id = 2002)
+                    Demo("退出Looper", id = 2002, description = "退出后无法收到新消息")
                 )
             )
         )
