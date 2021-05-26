@@ -58,7 +58,7 @@
         <activity android:name=".bar.StatusNavBarHideActivity" />
         <activity android:name=".service.TestServiceActivity" />
         <activity android:name=".memory.TestMemoryLeakActivity2" />
-        <activity android:name=".thread.ThreadActivity"/>
+        <activity android:name=".thread.ThreadActivity" />
 
         <service
                 android:name=".countdown.CountDownTimerService"
@@ -80,6 +80,9 @@
         </service>
 
         <service android:name=".service.TestService" />
+        <service
+                android:name=".service.MyIntentService"
+                android:process=":test2" />
 
         <!--Android 8.0的应用无法继续在其AndroidManifest中为隐式广播注册广播接收器-->
         <receiver android:name=".broadcast.MyBroadcastReceiver">

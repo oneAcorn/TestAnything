@@ -1,14 +1,12 @@
 package com.acorn.testanything.base
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acorn.testanything.R
 import com.acorn.testanything.demo.Demo
 import com.acorn.testanything.demo.DemoAdapter
-import com.acorn.testanything.service.TestService
 import kotlinx.android.synthetic.main.activity_rv_demo.*
 
 /**
