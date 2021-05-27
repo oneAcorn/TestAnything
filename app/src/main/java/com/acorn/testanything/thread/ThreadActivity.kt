@@ -3,8 +3,10 @@ package com.acorn.testanything.thread
 import android.os.Handler
 import android.os.HandlerThread
 import android.os.Looper
+import android.os.Message
 import com.acorn.testanything.base.BaseDemoAdapterActivity
 import com.acorn.testanything.demo.Demo
+import com.acorn.testanything.genericity.Dog
 import com.acorn.testanything.utils.logI
 
 /**
@@ -16,7 +18,14 @@ class ThreadActivity : BaseDemoAdapterActivity() {
         //线程优先级,系统默认为5.范围[1-10].数值越大，优先级越大，cpu优先调动概率越大
         HandlerThread("test", 5)
     }
+    private val threadLocalThreadList: MutableList<MyThread> by lazy { mutableListOf<MyThread>() }
+
     private lateinit var handler: Handler
+
+    companion object {
+        val mainThreadThreadLocal = ThreadLocal<String?>()
+        val mainThreadInheritableThreadLocal = InheritableThreadLocal<String?>()
+    }
 
     override fun getItems(): Array<Demo> {
         return arrayOf(
@@ -34,6 +43,25 @@ class ThreadActivity : BaseDemoAdapterActivity() {
                     Demo("启动Thread", id = 2000),
                     Demo("发送消息", id = 2001),
                     Demo("退出Looper", id = 2002, description = "退出后无法收到新消息")
+                )
+            ),
+            Demo(
+                "ThreadLocal",
+                subItems = arrayListOf(
+                    Demo("启动多个线程", id = 3000),
+                    Demo(
+                        "在主线程修改一些ThreadLocal", id = 3001,
+                        description = "在主线程直接修改ThreadLocal后,是不能在线程中获取到对应的值的.(ps:没搞清楚InheritableThreadLocal怎么在线程见共享)"
+                    ),
+                    Demo(
+                        "通过Handler在线程中修改一些ThreadLocal", id = 3004,
+                        description = "这种方式可以正常获取对应的值,而且static的值也是线程独立的"
+                    ),
+                    Demo("打印ThreadLocal值", id = 3002),
+                    Demo(
+                        "清理ThreadLocal", id = 3003,
+                        description = "如果不及时清理,会有内存泄漏风险"
+                    )
                 )
             )
         )
@@ -59,6 +87,21 @@ class ThreadActivity : BaseDemoAdapterActivity() {
             2002 -> {
                 quitHandlerThread()
             }
+            3000 -> {
+                threadLoaclStartSomeThread()
+            }
+            3001 -> {
+                threadLocalChangeVar()
+            }
+            3002 -> {
+                threadLocalLog()
+            }
+            3003 -> {
+                threadLocalClear()
+            }
+            3004 -> {
+                threadLocalChangeVarByThreadItself()
+            }
         }
     }
 
@@ -67,7 +110,7 @@ class ThreadActivity : BaseDemoAdapterActivity() {
     }
 
     private fun sendMsgToMyThread() {
-        myThread.mHandler.sendEmptyMessage(10011)
+        myThread.mHandler.sendEmptyMessage(0)
     }
 
     private fun quitMyThreadLooper() {
@@ -92,8 +135,75 @@ class ThreadActivity : BaseDemoAdapterActivity() {
         handlerThread.looper.quit()
     }
 
+    private fun threadLoaclStartSomeThread() {
+        for (i in 0..3) {
+            val myThread = MyThread()
+            myThread.name = "Thread$i"
+            threadLocalThreadList.add(myThread)
+            myThread.start()
+        }
+    }
+
+    private fun threadLocalChangeVar() {
+        threadLocalThreadList[1].mThreadLocal.set("1111111111111")
+        threadLocalThreadList[2].setThreadLocalValue("2222222222222222")
+        threadLocalThreadList[3].mInheritableThreadLocal.set("主线程设置InheritableThreadLocal 33333")
+        MyThread.staticThreadLocal.set("static fasdf")
+
+        mainThreadThreadLocal.set("主线程ThreadThreadLocal")
+        mainThreadInheritableThreadLocal.set("主线程InheritableThreadLocal")
+    }
+
+    private fun threadLocalChangeVarByThreadItself() {
+        threadLocalThreadList[0].mHandler.sendMessage(Message.obtain().apply {
+            what = 3001
+            obj = "I am static 00000000000"
+        })
+        threadLocalThreadList[1].mHandler.sendMessage(Message.obtain().apply {
+            what = 3000
+            obj = "I am thread 111111111111111111"
+        })
+        threadLocalThreadList[2].mHandler.sendMessage(Message.obtain().apply {
+            what = 3000
+            obj = "I am thread 222222222222222"
+        })
+        threadLocalThreadList[3].mHandler.sendMessage(Message.obtain().apply {
+            what = 3002
+            obj = "I am InheritableThread 333333333"
+        })
+
+        threadLocalThreadList[2].mHandler.sendMessage(Message.obtain().apply {
+            what = 3003
+            obj = "I am Static InheritableThread 222222222222222"
+        })
+    }
+
+    private fun threadLocalLog() {
+        threadLocalThreadList.forEach {
+            it.mHandler.sendEmptyMessage(1)
+        }
+    }
+
+    private fun threadLocalClear() {
+        threadLocalThreadList.forEach {
+            it.mThreadLocal.remove()
+        }
+        MyThread.staticThreadLocal.remove()
+    }
+
     class MyThread : Thread() {
         lateinit var mHandler: Handler
+        val mThreadLocal = ThreadLocal<String?>()
+        val mInheritableThreadLocal = InheritableThreadLocal<String?>()
+
+        companion object {
+            val staticThreadLocal = ThreadLocal<String?>()
+            val staticInheritableThreadLocal = InheritableThreadLocal<String?>()
+        }
+
+        fun setThreadLocalValue(str: String?) {
+            mThreadLocal.set(str)
+        }
 
         fun quit() {
             mHandler.looper.quit()
@@ -104,7 +214,34 @@ class ThreadActivity : BaseDemoAdapterActivity() {
             logI("启动Looper")
             Looper.prepare()
             mHandler = Handler {
-                logI("handle msg:${it.what},thread:${Thread.currentThread()}")
+                when (it.what) {
+                    0 -> { //log
+                        logI("handle thread:${Thread.currentThread()}")
+                    }
+                    1 -> { //log ThreadLocal Info
+                        logI(
+                            "Thread($name):\nthreadLocal:${mThreadLocal.get()}," +
+                                    "staticThreadLocal:${staticThreadLocal.get()} \n" +
+                                    "InheritableThreadLocal:${mInheritableThreadLocal.get()}," +
+                                    "Static InheritableThreadLocal:${staticInheritableThreadLocal.get()}\n" +
+                                    "Main Thread ThreadLocal:${mainThreadThreadLocal.get()}," +
+                                    "Main Thread InheritableThreadLocal:${mainThreadInheritableThreadLocal.get()}"
+                        )
+                    }
+                    3000 -> { //测试threadLocal
+                        mThreadLocal.set(it.obj as String?)
+                    }
+                    3001 -> { //测试threadLocal
+                        staticThreadLocal.set(it.obj as String?)
+                    }
+                    3002 -> {
+                        mInheritableThreadLocal.set(it.obj as String?)
+                    }
+                    3003 -> {
+                        staticInheritableThreadLocal.set(it.obj as String?)
+                    }
+                }
+
                 //@return True if no further handling is desired
                 return@Handler true
             }
