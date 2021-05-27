@@ -51,7 +51,9 @@ class ThreadActivity : BaseDemoAdapterActivity() {
                     Demo("启动多个线程", id = 3000),
                     Demo(
                         "在主线程修改一些ThreadLocal", id = 3001,
-                        description = "在主线程直接修改ThreadLocal后,是不能在线程中获取到对应的值的.(ps:没搞清楚InheritableThreadLocal怎么在线程见共享)"
+                        description = "在主线程直接修改ThreadLocal后,是不能在线程中获取到对应的值的.\n" +
+                                "如果想在子线程中获取共享的ThreadLocal,可以使用InheritableThreadLocal.\n" +
+                                "InheritableThreadLocal需要在线程启动前,在主线程为其赋值才可以"
                     ),
                     Demo(
                         "通过Handler在线程中修改一些ThreadLocal", id = 3004,
@@ -136,6 +138,8 @@ class ThreadActivity : BaseDemoAdapterActivity() {
     }
 
     private fun threadLoaclStartSomeThread() {
+        mainThreadThreadLocal.set("我不是Inheritable,所以也没法共享")
+        mainThreadInheritableThreadLocal.set("InheritableThreadLocal需要在线程启动前,在主线程为其赋值才可以.main")
         for (i in 0..3) {
             val myThread = MyThread()
             myThread.name = "Thread$i"
