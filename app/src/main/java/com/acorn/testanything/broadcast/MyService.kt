@@ -56,6 +56,7 @@ class MyService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
+        stopForeground(true)
         unregisterReceiver(receiver)
         unregisterReceiver(receiverInner)
     }
