@@ -21,12 +21,12 @@ class MyApplication : MultiDexApplication() {
         super.onCreate()
         context = applicationContext
         MMKV.initialize(this)
-        val serviceIntent = Intent(applicationContext, MyService::class.java)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(serviceIntent)
-        } else {
-            startService(serviceIntent)
-        }
+//        val serviceIntent = Intent(applicationContext, MyService::class.java)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            startForegroundService(serviceIntent)
+//        } else {
+//            startService(serviceIntent)
+//        }
         setupStrictMode()
     }
 

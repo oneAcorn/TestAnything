@@ -4,12 +4,15 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.IBinder
+import android.widget.Toast
 import com.acorn.testanything.R
 import com.acorn.testanything.utils.logI
 
@@ -17,13 +20,27 @@ import com.acorn.testanything.utils.logI
  * Created by acorn on 2021/5/21.
  */
 class TestService : Service() {
+    private lateinit var mReceiver: MyBroadcastReceiver
+
+    companion object {
+        const val BROAD_ISALIVE = "com.acorn.testanything.MyBroadcastReceiver.isAlive"
+    }
 
     override fun onCreate() {
         super.onCreate()
         logI("onCreate")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForeground(1047, createNotification())
-        }
+
+        mReceiver = MyBroadcastReceiver()
+        val filter = IntentFilter()
+        filter.addAction(BROAD_ISALIVE)
+        registerReceiver(mReceiver, filter)
+        //service启动的线程并不会受service的生命周期影响
+        Thread {
+            while (true) {
+                Thread.sleep(3000)
+                logI("ThreadInService:I'm alive!")
+            }
+        }.start()
     }
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -33,12 +50,17 @@ class TestService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         logI("onStartCommand intent:$intent,Thread:${Thread.currentThread()}")
+        val isCreateNotification = intent?.getBooleanExtra("isCreateNotification", false)
+        if (isCreateNotification == true && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForeground(1047, createNotification())
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         stopForeground(true)
+        unregisterReceiver(mReceiver)
         logI("onDestroy")
     }
 
@@ -74,5 +96,16 @@ class TestService : Service() {
                 .setWhen(System.currentTimeMillis()) //设置通知发生时间
             builder.build()
         } else null
+    }
+
+    inner class MyBroadcastReceiver : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            when (intent.action) {
+                BROAD_ISALIVE -> {
+                    Toast.makeText(context, "I'm alive!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     }
 }
