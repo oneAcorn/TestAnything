@@ -70,8 +70,15 @@ class TestServiceActivity : BaseDemoAdapterActivity() {
                         "而高于API23会使用JobScheduler实现。所以这是一个能取代闹钟定时器的后台功能。" +
                         "并且在高版本里闹钟功能其实已经不太能正常使用了。使用WorkManager取代所有周期或者长时间的后台工作是必需必要的。",
                 subItems = arrayListOf(
-                    Demo("run worker", id = 3000),
-                    Demo("observe worker", id = 3001)
+                    Demo(
+                        "run worker", id = 3000,
+                        description = "如果开启worker时,app进程存活,则立即dowork(),否则在系统觉得合适的时机执行(可以设置约束条件)"
+                    ),
+                    Demo(
+                        "observe worker", id = 3001,
+                        description = "可以通过keepResultsForAtLeast(7L, TimeUnit.DAYS)方法保留Worker的outputData返回值," +
+                                "下次observe后可以取得返回值"
+                    )
                 )
             ),
             Demo(
@@ -164,7 +171,7 @@ class TestServiceActivity : BaseDemoAdapterActivity() {
                 .setInputData(inputData)
                 .setConstraints(constraints)
                 .setInitialDelay(5L, TimeUnit.SECONDS)
-                .keepResultsForAtLeast(1L, TimeUnit.HOURS) //设置任务的结果保存时间
+                .keepResultsForAtLeast(7L, TimeUnit.DAYS) //设置任务的结果(outputData)保存时间
                 .build()
         saveSerializableByFile("workerId", request.id)
         WorkManager.getInstance(this)
@@ -193,6 +200,7 @@ class TestServiceActivity : BaseDemoAdapterActivity() {
                         logI("失败")
                     }
                     WorkInfo.State.SUCCEEDED -> {
+                        //可通过keepResultsForAtLeast()方法保留outputData一定时间
                         logI("成功,返回值:${it.outputData.getString("b")}")
                     }
                 }
