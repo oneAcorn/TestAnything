@@ -95,4 +95,7 @@ dependencies {
 
     implementation 'com.alibaba:fastjson:1.1.67.android'
     implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
+
+    //WorkManager
+    implementation "androidx.work:work-runtime:2.3.4"
 }
