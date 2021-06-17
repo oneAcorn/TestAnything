@@ -6,7 +6,6 @@ import android.os.Looper
 import android.os.Message
 import com.acorn.testanything.base.BaseDemoAdapterActivity
 import com.acorn.testanything.demo.Demo
-import com.acorn.testanything.genericity.Dog
 import com.acorn.testanything.utils.logI
 
 /**
@@ -14,6 +13,7 @@ import com.acorn.testanything.utils.logI
  */
 class ThreadActivity : BaseDemoAdapterActivity() {
     private val myThread: MyThread by lazy { MyThread() }
+    private val looperThread: LooperThread by lazy { LooperThread(Looper.myLooper()) }
     private val handlerThread: HandlerThread by lazy {
         //线程优先级,系统默认为5.范围[1-10].数值越大，优先级越大，cpu优先调动概率越大
         HandlerThread("test", 5)
@@ -65,6 +65,14 @@ class ThreadActivity : BaseDemoAdapterActivity() {
                         description = "如果不及时清理,会有内存泄漏风险"
                     )
                 )
+            ),
+            Demo(
+                "Thread+动态Looper",
+                description = "Thread中的Handler由其构造方法传入的Looper所在线程决定handMessage的所在线程",
+                subItems = arrayListOf(
+                    Demo("启动Thread", id = 4000),
+                    Demo("发送消息", id = 4001)
+                )
             )
         )
     }
@@ -103,6 +111,12 @@ class ThreadActivity : BaseDemoAdapterActivity() {
             }
             3004 -> {
                 threadLocalChangeVarByThreadItself()
+            }
+            4000->{
+                startLooperThread()
+            }
+            4001->{
+                sendMsgToLooperThread()
             }
         }
     }
@@ -195,6 +209,17 @@ class ThreadActivity : BaseDemoAdapterActivity() {
         MyThread.staticThreadLocal.remove()
     }
 
+    private fun startLooperThread() {
+        looperThread.start()
+    }
+
+    private fun sendMsgToLooperThread() {
+        looperThread.mHandler.sendMessage(Message.obtain().apply {
+            what = 0
+            obj = "hello"
+        })
+    }
+
     class MyThread : Thread() {
         lateinit var mHandler: Handler
         val mThreadLocal = ThreadLocal<String?>()
@@ -251,6 +276,19 @@ class ThreadActivity : BaseDemoAdapterActivity() {
             }
             Looper.loop()
             logI("结束死循环,退出Looper后才能走到这里")
+        }
+    }
+
+    class LooperThread(val looper: Looper?) : Thread() {
+        lateinit var mHandler: Handler
+
+        override fun run() {
+            super.run()
+            //handler由looper所在线程决定handlMessage所在线程
+            mHandler = Handler(looper) {
+                logI("curThread:${Thread.currentThread()},msg:${it.obj}")
+                return@Handler true
+            }
         }
     }
 }
