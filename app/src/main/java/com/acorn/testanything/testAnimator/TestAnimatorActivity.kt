@@ -3,9 +3,15 @@ package com.acorn.testanything.testAnimator
 import android.animation.*
 import android.graphics.Color
 import android.os.Bundle
+import android.view.animation.BounceInterpolator
+import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
+import androidx.lifecycle.GenericLifecycleObserver
+import androidx.lifecycle.Lifecycle
 import com.acorn.testanything.R
+import com.acorn.testanything.utils.logI
 import kotlinx.android.synthetic.main.activity_test_animator.*
 import org.greenrobot.eventbus.EventBus
 
@@ -86,6 +92,8 @@ class TestAnimatorActivity : AppCompatActivity() {
                 rotaAnim.start()
             }
         }
+
+        startArrowAnim()
     }
 
     private fun initAnim() {
@@ -142,5 +150,51 @@ class TestAnimatorActivity : AppCompatActivity() {
 //                }
 //            })
         }
+    }
+
+    private fun startArrowAnim() {
+        val anim = ObjectAnimator.ofFloat(arrowIv, "translationY", 0f, 80f, -20f, 80f, 0f)
+        anim.startDelay = 1000
+        anim.duration = 1800
+        anim.interpolator = DecelerateInterpolator()
+//        anim.repeatCount = ValueAnimator.INFINITE
+        anim.repeatMode = ValueAnimator.RESTART
+        anim.addListener(object : Animator.AnimatorListener {
+            var isCanceled = false
+            override fun onAnimationStart(animation: Animator?) {
+                logI("onAnimationStart")
+                isCanceled = false
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                logI("onAnimationEnd")
+                if (!isCanceled)
+                    anim.start()
+            }
+
+            override fun onAnimationCancel(animation: Animator?) {
+                logI("onAnimationCancel")
+                isCanceled = true
+            }
+
+            override fun onAnimationRepeat(animation: Animator?) {
+                logI("onAnimationRepeat")
+            }
+
+        })
+        anim.start()
+
+        lifecycle.addObserver(GenericLifecycleObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_PAUSE -> {
+                    anim.cancel()
+                }
+                Lifecycle.Event.ON_RESUME -> {
+                    anim.start()
+                }
+                else -> {
+                }
+            }
+        })
     }
 }

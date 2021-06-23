@@ -43,7 +43,14 @@
             android:textAllCaps="false" />
 
     <com.acorn.testanything.testAnimator.ClickView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:background="#FDD5A7" />
+
+    <ImageView
+            android:id="@+id/arrowIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#E2F394"
+            android:src="@mipmap/mirror_slide_tip" />
 </LinearLayout>
