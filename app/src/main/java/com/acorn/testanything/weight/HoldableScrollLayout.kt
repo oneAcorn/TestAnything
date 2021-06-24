@@ -23,10 +23,13 @@ import kotlin.math.absoluteValue
  */
 class HoldableScrollLayout : LinearLayout, NestedScrollingParent {
     private val mHandler: Handler
+    //RecyclerView最大偏移举例
     private val maxScrollY = screenHeight / 2
+    //handler的延时消息是否已经remove
     private var isMsgRemoved = false
     private var isAnimating = false
     private val resetAnim: ValueAnimator = ValueAnimator()
+    //RecyclerView是否还能向上滚动
     private var canScrollUp = false
     private var canScrollDown = false
 
@@ -93,7 +96,7 @@ class HoldableScrollLayout : LinearLayout, NestedScrollingParent {
             isMsgRemoved = true
         }
         if (!isOffseted()) {
-            if (dy < 0 && canScrollUp) { //把RecyclerView往下拖动
+            if (dy < 0 && canScrollUp) { //把RecyclerView往下拖动,如果RecyclerView可以往上滑,那就交给RecycleView自己处理
                 return
             } else if (dy > 0 && canScrollDown) {
                 return
@@ -102,7 +105,7 @@ class HoldableScrollLayout : LinearLayout, NestedScrollingParent {
         val realY = getRealScrollY(dy)
         if (realY != 0) {
             scrollBy(0, realY)
-            consumed[1] = dy //消费掉child的y轴滑动
+            consumed[1] = dy //消费掉RecyclerView的y轴滑动
         }
     }
 
@@ -115,7 +118,7 @@ class HoldableScrollLayout : LinearLayout, NestedScrollingParent {
         val curScrollY = scrollY
         val targetScrollY = curScrollY + y
         var realY = y
-        if (targetScrollY.absoluteValue > maxScrollY) {
+        if (targetScrollY.absoluteValue > maxScrollY) { //不能超过最大可偏移距离
             if (curScrollY < 0) {
                 realY = targetScrollY.absoluteValue - maxScrollY + y
             } else if (curScrollY > 0) {
@@ -132,6 +135,9 @@ class HoldableScrollLayout : LinearLayout, NestedScrollingParent {
         isMsgRemoved = false
     }
 
+    /**
+     * RecyclerView是否已经偏移(scrollBy())
+     */
     private fun isOffseted(): Boolean {
         return scrollY != 0
     }
