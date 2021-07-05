@@ -17,6 +17,7 @@ import com.acorn.testanything.memory.TestMemoryLeakActivity2
 import com.acorn.testanything.mmkv.MMKVTestActivity
 import com.acorn.testanything.motionLayout.MotionLayoutActivity
 import com.acorn.testanything.mvvm.MVVMActivity
+import com.acorn.testanything.native.TestNativeActivity
 import com.acorn.testanything.qr.QRActivity
 import com.acorn.testanything.rxjava.RxJavaActivity
 import com.acorn.testanything.service.TestServiceActivity
@@ -100,7 +101,8 @@ class MainActivity : BaseDemoAdapterActivity() {
                 subItems = arrayListOf(
                     Demo("Measure", activity = TestMeasureActivity::class.java)
                 )
-            )
+            ),
+            Demo("JNI Native方法测试", activity = TestNativeActivity::class.java)
         )
     }
 

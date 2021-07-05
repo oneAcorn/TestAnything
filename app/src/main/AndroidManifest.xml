@@ -60,6 +60,7 @@
         <activity android:name=".memory.TestMemoryLeakActivity2" />
         <activity android:name=".thread.ThreadActivity" />
         <activity android:name=".viewtest.TestMeasureActivity" />
+        <activity android:name=".native.TestNativeActivity" />
 
         <service
                 android:name=".countdown.CountDownTimerService"
