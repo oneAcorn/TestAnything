@@ -13,5 +13,5 @@ fun log(string: String) {
 }
 
 fun outputWithInfo(string: String) {
-    println("${Thread.currentThread().name} ${Date(System.currentTimeMillis())}:$string")
+    println("${Thread.currentThread().name} ${System.currentTimeMillis()}:$string")
 }

@@ -21,10 +21,12 @@ class TestWait {
 
     fun execute() {
         val executorService = Executors.newFixedThreadPool(8)
-        for (i in 0..3) {
-            executorService.execute(Producer())
-            executorService.execute(Consumer())
-        }
+//        for (i in 0..3) {
+//            executorService.execute(Producer())
+//            executorService.execute(Consumer())
+//        }
+        executorService.execute(Producer())
+        executorService.execute(Consumer())
     }
 
     inner class Producer : Runnable {
@@ -41,6 +43,7 @@ class TestWait {
                     lock.notifyAll()
                 }
             }
+            outputWithInfo("生产结束")
         }
     }
 
@@ -58,6 +61,7 @@ class TestWait {
                     lock.notifyAll()
                 }
             }
+            outputWithInfo("消费结束")
         }
     }
 }
